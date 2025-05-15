@@ -1,0 +1,21 @@
+Computerized homework:
+	- Login w/ID number.  Anything more?
+	- IP Logging
+	- Is SRS nuts?
+	- Different problems for different students
+	- Problems are in their book
+	- Buttons for special chars, fractions, PMF
+	- They hit submit, then it shows answer?  In-depth solution?  If wrong, a second chance?
+	- How to fuzzy check?  Ask them to check?
+	- Ban pasting / Log pasting
+	- Cadence? (Oscar says daily)
+	- Homework feedback
+
+Supabase table has schema
+ column_name |        data_type         | character_maximum_length 
+-------------+--------------------------+--------------------------
+ id          | uuid                     |                         
+ created_at  | timestamp with time zone |                         
+ stud_id     | integer                  |                         
+ answers     | jsonb                    |                         
+ ip          | text                     |   
