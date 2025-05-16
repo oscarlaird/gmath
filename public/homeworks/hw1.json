@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "question": "Solve for x: 5x + 3 = 18",
+    "correctAnswer": "3",
+    "bookNumber": "1.I.A",
+    "type": "algebraic"
+  },
+  {
+    "id": 2,
+    "question": "Find the derivative of f(x) = 4x^3 + 2x",
+    "correctAnswer": "12x^2 + 2",
+    "bookNumber": "1.II.B",
+    "type": "calculus"
+  },
+  {
+    "id": 3,
+    "question": "If P(A) = 0.4 and P(B) = 0.3, what is P(A ∩ B) if A and B are independent events?",
+    "correctAnswer": "0.12",
+    "bookNumber": "1.III.C",
+    "type": "probability"
+  }
+] 

@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "question": "Calculate the area of a rectangle with length 8 units and width 5 units.",
+    "correctAnswer": "40",
+    "bookNumber": "2.I.A",
+    "type": "geometry"
+  },
+  {
+    "id": 2,
+    "question": "If a car travels at 65 mph for 3 hours, how far does it travel?",
+    "correctAnswer": "195",
+    "bookNumber": "2.II.B",
+    "type": "word_problem"
+  },
+  {
+    "id": 3,
+    "question": "Convert 25 degrees Celsius to Fahrenheit.",
+    "correctAnswer": "77",
+    "bookNumber": "2.III.C",
+    "type": "conversion"
+  },
+  {
+    "id": 4,
+    "question": "Find the volume of a cube with side length 4 units.",
+    "correctAnswer": "64",
+    "bookNumber": "2.IV.D",
+    "type": "geometry"
+  },
+  {
+    "id": 5,
+    "question": "If an item costs $80 and there is a 15% discount, what is the final price?",
+    "correctAnswer": "68",
+    "bookNumber": "2.V.E",
+    "type": "percentage"
+  }
+] 

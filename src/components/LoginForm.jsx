@@ -1,8 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
 
 function LoginForm({ onLogin }) {
   const [studentId, setStudentId] = useState('');
   const [error, setError] = useState('');
+
+  // Check for remembered student ID
+  useEffect(() => {
+    const rememberedId = Cookies.get('lastStudentId');
+    if (rememberedId) {
+      setStudentId(rememberedId);
+    }
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,6 +25,9 @@ function LoginForm({ onLogin }) {
       setError('Student ID should be 5-10 digits');
       return;
     }
+    
+    // Remember the last used ID (separate from the auth cookie)
+    Cookies.set('lastStudentId', studentId, { expires: 30 });
     
     onLogin(studentId);
   };

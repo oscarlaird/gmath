@@ -1,15 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import LoginForm from './components/LoginForm.jsx';
 import MathQuestions from './components/MathQuestions.jsx';
+import Home from './components/Home.jsx';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [studentId, setStudentId] = useState('');
   const [ipAddress, setIpAddress] = useState('');
   
-  // Get IP address on component mount
+  // Check for existing login on component mount
   useEffect(() => {
-    // This is a simple way to get an IP - in production you might use a more reliable service
+    const savedStudentId = Cookies.get('studentId');
+    if (savedStudentId) {
+      setStudentId(savedStudentId);
+      setLoggedIn(true);
+    }
+    
+    // Get IP address
     const getIpAddress = async () => {
       try {
         // Simulate IP logging - in a real app, you might get this from the server
@@ -23,39 +32,70 @@ function App() {
     getIpAddress();
   }, []);
   
-  // Simulate logging in
+  // Handle login
   const handleLogin = (id) => {
-    // In a real app, you would validate the ID
+    // Set cookie to expire in 7 days
+    Cookies.set('studentId', id, { expires: 7 });
     setStudentId(id);
     setLoggedIn(true);
   };
+  
+  // Handle logout
+  const handleLogout = () => {
+    Cookies.remove('studentId');
+    setStudentId('');
+    setLoggedIn(false);
+    // Force reload to clear any state
+    window.location.reload();
+  };
 
   return (
-    <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
-      <div className="relative py-3 sm:max-w-xl sm:mx-auto">
-        <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
-          <div className="max-w-md mx-auto">
-            <div className="divide-y divide-gray-200">
-              <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                <h1 className="text-2xl font-bold text-center text-blue-600">Math Homework System</h1>
-                
-                {!loggedIn ? (
-                  <LoginForm onLogin={handleLogin} />
-                ) : (
-                  <div>
-                    <div className="mb-6">
-                      <p className="text-sm text-gray-500">Student ID: {studentId}</p>
-                      <p className="text-sm text-gray-500">IP Address: {ipAddress}</p>
+    <Router>
+      <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
+        <div className="relative py-3 sm:max-w-xl sm:mx-auto">
+          <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+            <div className="max-w-md mx-auto">
+              <div className="divide-y divide-gray-200">
+                <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+                  <h1 className="text-2xl font-bold text-center text-blue-600">Math Homework System</h1>
+                  
+                  {!loggedIn ? (
+                    <LoginForm onLogin={handleLogin} />
+                  ) : (
+                    <div>
+                      <div className="mb-6 flex justify-between items-center">
+                        <div>
+                          <p className="text-sm text-gray-500">Student ID: {studentId}</p>
+                          <p className="text-sm text-gray-500">IP Address: {ipAddress}</p>
+                        </div>
+                        <button
+                          onClick={handleLogout}
+                          className="px-3 py-1 text-sm bg-red-600 text-white rounded hover:bg-red-700"
+                        >
+                          Sign Out
+                        </button>
+                      </div>
+                      <Routes>
+                        <Route path="/" element={<Home studentId={studentId} />} />
+                        <Route 
+                          path="/:slug" 
+                          element={
+                            <MathQuestions 
+                              studentId={studentId} 
+                              ipAddress={ipAddress} 
+                            />
+                          } 
+                        />
+                      </Routes>
                     </div>
-                    <MathQuestions studentId={studentId} ipAddress={ipAddress} />
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </Router>
   );
 }
 
