@@ -1,15 +1,25 @@
-Computerized homework:
-	- Login w/ID number.  Anything more?
-	- IP Logging
-	- Is SRS nuts?
-	- Different problems for different students
-	- Problems are in their book
-	- Buttons for special chars, fractions, PMF
+Canceled
 	- They hit submit, then it shows answer?  In-depth solution?  If wrong, a second chance?
-	- How to fuzzy check?  Ask them to check?
+	
+Done
+	- Buttons for special chars, fractions, PMF
+	- IP Logging
+	- Login w/ID number.  Anything more?
+	- (Problems are in their book)
+	- (Cadence? (Oscar says daily))
+
+Core
+
+Easy
 	- Ban pasting / Log pasting
-	- Cadence? (Oscar says daily)
+
+Hard
+	- How to fuzzy check?  Ask them to check?
+	- Is SRS nuts?
 	- Homework feedback
+	- Different problems for different students
+	- Piecewise functions
+	- Tables
 
 Supabase hw_responses table has schema
  column_name |        data_type         | character_maximum_length 

@@ -73,12 +73,10 @@ function App() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
-        <div className="relative py-3 sm:max-w-xl sm:mx-auto">
-          <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
-            <div className="max-w-md mx-auto text-center">
-              Loading...
-            </div>
+      <div className="min-h-screen bg-[#f5f5f0] py-12 px-4">
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center p-8 border border-[#d1d1c7] bg-white">
+            <p className="text-[#6b7280]">Loading...</p>
           </div>
         </div>
       </div>
@@ -87,47 +85,43 @@ function App() {
 
   return (
     <Router>
-      <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
-        <div className="relative py-3 sm:max-w-xl sm:mx-auto">
-          <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
-            <div className="max-w-md mx-auto">
-              <div className="divide-y divide-gray-200">
-                <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                  <h1 className="text-2xl font-bold text-center text-blue-600">Math Homework System</h1>
-                  
-                  {!loggedIn ? (
-                    <LoginForm onLogin={handleLogin} />
-                  ) : (
+      <div className="min-h-screen bg-[#f5f5f0] py-12 px-4">
+        <div className="max-w-2xl mx-auto">
+          <div className="p-8 border border-[#d1d1c7] bg-white">
+            <header className="pb-4 mb-8 border-b border-[#e5e5dc]">
+              <h1 className="text-2xl font-normal text-center text-[#5a7d7c]">Mr. George's Math Homework</h1>
+            </header>
+            
+            {!loggedIn ? (
+              <LoginForm onLogin={handleLogin} />
+            ) : (
+              <div>
+                <div className="mb-8 pb-4 border-b border-[#e5e5dc]">
+                  <div className="flex justify-between items-center">
                     <div>
-                      <div className="mb-6">
-                        <div className="flex justify-between items-center mb-2">
-                          <div>
-                            <h2 className="text-xl font-semibold">Welcome, {studentName || `Student ${studentId}`}</h2>
-                            <p className="text-sm text-gray-500">Student ID: {studentId}</p>
-                          </div>
-                          <button
-                            onClick={handleLogout}
-                            className="px-3 py-1 text-sm bg-red-600 text-white rounded hover:bg-red-700"
-                          >
-                            Sign Out
-                          </button>
-                        </div>
-                      </div>
-                      <Routes>
-                        <Route 
-                          path="/" 
-                          element={
-                            <MathQuestions 
-                              studentId={studentId} 
-                            />
-                          } 
-                        />
-                      </Routes>
+                      <h2 className="text-xl font-normal text-[#5a7d7c]">Welcome, {studentName || `Student ${studentId}`}</h2>
+                      <p className="text-sm text-[#6b7280]">Student ID: {studentId}</p>
                     </div>
-                  )}
+                    <button
+                      onClick={handleLogout}
+                      className="px-3 py-1 text-sm bg-[#e8a87c] text-white border-none hover:bg-[#d9946c] transition-colors"
+                    >
+                      Sign Out
+                    </button>
+                  </div>
                 </div>
+                <Routes>
+                  <Route 
+                    path="/" 
+                    element={
+                      <MathQuestions 
+                        studentId={studentId} 
+                      />
+                    } 
+                  />
+                </Routes>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

@@ -24,36 +24,36 @@ function QuestionItem({ question, answer, feedback, onAnswerChange, previousAnsw
   const overdueStatus = isOverdue();
   
   return (
-    <div className={`mb-8 p-6 border rounded-lg ${overdueStatus ? 'bg-red-50 border-red-200' : 'bg-gray-50'}`}>
-      <div className="flex justify-between items-start mb-4">
-        <div>
-          <h3 className="font-medium text-lg">{question.bookNumber}</h3>
-          {question.due_on && (
-            <span className={`text-sm ${overdueStatus ? 'text-red-600 font-semibold' : 'text-gray-500'}`}>
-              Due: {formatDueDate(question.due_on)}
-            </span>
-          )}
+    <div className={`mb-8 border ${overdueStatus ? 'border-[#edcdc2] bg-[#fdf5f0]' : 'border-[#d1d1c7] bg-[#fafaf5]'}`}>
+      <div className="p-4 border-b border-[#e5e5dc]">
+        <div className="flex justify-between items-start">
+          <div>
+            <h3 className="font-normal text-lg text-[#5a7d7c]">{question.bookNumber}</h3>
+            {question.due_on && (
+              <span className={`text-sm ${overdueStatus ? 'text-[#e76f51]' : 'text-[#6b7280]'}`}>
+                Due: {formatDueDate(question.due_on)}
+              </span>
+            )}
+          </div>
         </div>
       </div>
       
-      <div className="mb-5">
+      <div className="p-4">
         <math-field
           value={answer}
           onInput={(evt) => onAnswerChange(evt.target.value)}
-          className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-3 border border-[#d1d1c7] focus:outline-none focus:border-[#85b7b6]"
           style={{ minWidth: '100%', minHeight: '48px' }}
         ></math-field>
       </div>
       
-      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
+      <div className="p-4 border-t border-[#e5e5dc] flex flex-col sm:flex-row sm:justify-between sm:items-center">
         <button
           onClick={() => onSubmit(question.id)}
           disabled={isSubmitting}
-          className={`px-6 py-3 rounded-lg font-medium text-white shadow-sm transform transition-all duration-200 
-            ${isSubmitting 
-              ? 'bg-blue-400 cursor-not-allowed' 
-              : 'bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 hover:shadow active:scale-95'
-            }`}
+          className={`px-6 py-2 ${isSubmitting 
+            ? 'bg-[#b3c8c8] cursor-not-allowed' 
+            : 'bg-[#85b7b6] hover:bg-[#5a7d7c]'} text-white border-none transition-colors`}
         >
           {isSubmitting 
             ? (
@@ -71,8 +71,8 @@ function QuestionItem({ question, answer, feedback, onAnswerChange, previousAnsw
         
         {feedback && (
           <div className={`mt-3 sm:mt-0 text-sm ${
-            feedback.status === 'success' ? 'text-green-600' : 
-            feedback.status === 'warning' ? 'text-yellow-600' : 'text-red-600'
+            feedback.status === 'success' ? 'text-[#588157]' : 
+            feedback.status === 'warning' ? 'text-[#e9c46a]' : 'text-[#e76f51]'
           }`}>
             {feedback.message}
           </div>
@@ -80,16 +80,18 @@ function QuestionItem({ question, answer, feedback, onAnswerChange, previousAnsw
       </div>
       
       {previousAnswers && previousAnswers.length > 0 && (
-        <div className="mt-5 pt-4 border-t">
-          <h4 className="text-sm font-medium mb-2">Previous Answers:</h4>
-          <ul className="text-sm space-y-2">
+        <div className="p-4 border-t border-[#e5e5dc]">
+          <h4 className="text-sm font-normal mb-2 text-[#5a7d7c]">Previous Answers:</h4>
+          <ul className="text-sm">
             {previousAnswers.map((prev, index) => (
-              <li key={index} className="flex items-center bg-white p-2 rounded">
-                <span className={`w-4 h-4 inline-block rounded-full mr-2 ${prev.is_correct ? 'bg-green-500' : 'bg-red-500'}`}></span>
-                <span className="font-mono">{prev.user_answer}</span>
-                <span className="ml-2 text-xs text-gray-500">
-                  ({new Date(prev.created_at).toLocaleDateString()})
-                </span>
+              <li key={index} className="mb-2 pb-2 border-b border-[#e5e5dc] last:border-0 last:mb-0 last:pb-0">
+                <div className="flex items-center">
+                  <div className={`w-4 h-4 inline-block mr-2 ${prev.is_correct ? 'bg-[#588157]' : 'bg-[#e76f51]'}`}></div>
+                  <span className="font-mono">{prev.user_answer}</span>
+                  <span className="ml-2 text-xs text-[#6b7280]">
+                    ({new Date(prev.created_at).toLocaleDateString()})
+                  </span>
+                </div>
               </li>
             ))}
           </ul>

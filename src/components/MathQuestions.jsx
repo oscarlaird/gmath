@@ -8,19 +8,19 @@ function CollapsibleSection({ title, children, defaultOpen = false }) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
   
   return (
-    <div className="mb-6 border rounded-lg overflow-hidden">
+    <div className="mb-6 border border-[#d1d1c7]">
       <button 
-        className="w-full p-3 bg-gray-100 flex justify-between items-center hover:bg-gray-200 transition-colors"
+        className="w-full p-3 bg-[#f0f0e8] flex justify-between items-center hover:bg-[#e5e5dc] transition-colors border-b border-[#d1d1c7]"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <h3 className="font-medium text-lg">{title}</h3>
-        <span className="text-xl">
+        <h3 className="font-normal text-lg text-[#5a7d7c]">{title}</h3>
+        <span className="text-[#6b7280]">
           {isOpen ? '▼' : '►'}
         </span>
       </button>
       
       {isOpen && (
-        <div className="p-3">
+        <div className="p-0">
           {children}
         </div>
       )}
@@ -276,11 +276,11 @@ function MathQuestions({ studentId }) {
   };
 
   if (loading) {
-    return <div className="text-center py-8">Loading homework questions...</div>;
+    return <div className="text-center py-8 text-[#6b7280]">Loading homework questions...</div>;
   }
 
   if (error) {
-    return <div className="text-center py-8 text-red-600">{error}</div>;
+    return <div className="text-center py-8 text-[#e76f51]">{error}</div>;
   }
 
   // Render function for question items
@@ -301,13 +301,13 @@ function MathQuestions({ studentId }) {
 
   return (
     <div>
-      <div className="mb-6">
-        <h2 className="text-xl font-semibold">Math Problems</h2>
+      <div className="mb-6 pb-4 border-b border-[#e5e5dc]">
+        <h2 className="text-xl font-normal text-[#5a7d7c]">Math Problems</h2>
       </div>
       
       {activeQuestions.length > 0 && (
         <div className="mb-8">
-          <h3 className="text-lg font-medium mb-4">Active Problems</h3>
+          <h3 className="text-lg font-normal mb-4 text-[#5a7d7c]">Active Problems</h3>
           {renderQuestionItems(activeQuestions)}
         </div>
       )}
