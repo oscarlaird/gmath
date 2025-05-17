@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "correctAnswer": "3",
+    "bookNumber": "1.I.A",
+    "due_on": "2025-05-15",
+    "concept": 1
+  },
+  {
+    "id": 2,
+    "correctAnswer": "12x^2 + 2",
+    "bookNumber": "1.II.B",
+    "due_on": "2025-05-17",
+    "concept": 1
+  },
+  {
+    "id": 3,
+    "correctAnswer": "0.12",
+    "bookNumber": "1.III.C",
+    "due_on": "2025-05-17",
+    "concept": 2
+  }
+] 

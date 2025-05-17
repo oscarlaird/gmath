@@ -1,37 +1,83 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient.js';
 import 'mathlive';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import QuestionItem from './QuestionItem.jsx';
-import HomeworkNavigation from './HomeworkNavigation.jsx';
-import FeedbackPanel from './FeedbackPanel.jsx';
 
-function MathQuestions({ studentId, ipAddress }) {
-  const { slug } = useParams();
+function CollapsibleSection({ title, children, defaultOpen = false }) {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+  
+  return (
+    <div className="mb-6 border rounded-lg overflow-hidden">
+      <button 
+        className="w-full p-3 bg-gray-100 flex justify-between items-center hover:bg-gray-200 transition-colors"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <h3 className="font-medium text-lg">{title}</h3>
+        <span className="text-xl">
+          {isOpen ? '▼' : '►'}
+        </span>
+      </button>
+      
+      {isOpen && (
+        <div className="p-3">
+          {children}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function MathQuestions({ studentId }) {
   const navigate = useNavigate();
   const [questions, setQuestions] = useState([]);
+  const [activeQuestions, setActiveQuestions] = useState([]);
+  const [overdueQuestions, setOverdueQuestions] = useState([]);
   const [answers, setAnswers] = useState({});
   const [feedback, setFeedback] = useState({});
-  const [submitted, setSubmitted] = useState(false);
-  const [secondChance, setSecondChance] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [previousAnswers, setPreviousAnswers] = useState({});
+  const [submittingQuestion, setSubmittingQuestion] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
-  // Fetch homework questions based on slug
+  // Fetch homework questions and previous answers
   useEffect(() => {
-    const fetchHomework = async () => {
+    const fetchData = async () => {
       setLoading(true);
       try {
-        const homeworkSlug = slug || 'hw1';
-        const response = await fetch(`/homeworks/${homeworkSlug}.json`);
+        // Fetch homework questions
+        const response = await fetch('/homework.json');
         
         if (!response.ok) {
           throw new Error(`Failed to load homework: ${response.statusText}`);
         }
         
         const homeworkQuestions = await response.json();
+        console.log("Fetched questions:", homeworkQuestions);
         setQuestions(homeworkQuestions);
+        
+        // Sort questions into active and overdue
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); // Reset hours to compare just the date
+        
+        const active = [];
+        const overdue = [];
+        
+        homeworkQuestions.forEach(question => {
+          const dueDate = new Date(question.due_on);
+          
+          if (dueDate < today) {
+            overdue.push(question);
+          } else {
+            active.push(question);
+          }
+        });
+        
+        console.log("Active questions:", active);
+        console.log("Overdue questions:", overdue);
+        
+        setActiveQuestions(active);
+        setOverdueQuestions(overdue);
         
         // Initialize answers object
         const initialAnswers = {};
@@ -39,18 +85,85 @@ function MathQuestions({ studentId, ipAddress }) {
           initialAnswers[q.id] = '';
         });
         setAnswers(initialAnswers);
+        
+        // Fetch previous answers from Supabase if student is logged in
+        if (studentId) {
+          await fetchPreviousAnswers(studentId);
+        }
+        
         setError(null);
       } catch (err) {
-        console.error('Error loading homework:', err);
-        setError('Failed to load homework questions. Please try again later.');
+        console.error('Error loading data:', err);
+        setError('Failed to load homework data. Please try again later.');
         setQuestions([]);
       } finally {
         setLoading(false);
       }
     };
     
-    fetchHomework();
-  }, [slug]);
+    fetchData();
+  }, [studentId]);
+  
+  // Function to fetch previous answers from Supabase
+  const fetchPreviousAnswers = async (studId) => {
+    try {
+      console.log("Fetching previous answers for student ID:", studId);
+      
+      const { data, error } = await supabase
+        .from('hw_responses')
+        .select('*')
+        .eq('stud_id', studId);
+      
+      if (error) {
+        console.error('Error fetching previous answers:', error);
+        return;
+      }
+      
+      console.log("Raw responses from Supabase:", data);
+      
+      // Process the response data
+      if (data && data.length > 0) {
+        const prevAnswersMap = {};
+        
+        // Each hw_response now contains a single answer for a single question
+        data.forEach(response => {
+          // The answer column is now "answer" instead of "answers"
+          const answer = response.answer;
+          
+          if (answer && typeof answer === 'object' && answer.question_id !== undefined) {
+            const questionId = answer.question_id;
+            
+            console.log(`Processing answer for question ${questionId}:`, answer);
+            
+            if (!prevAnswersMap[questionId]) {
+              prevAnswersMap[questionId] = [];
+            }
+            
+            prevAnswersMap[questionId].push({
+              ...answer,
+              created_at: response.created_at
+            });
+          } else {
+            console.warn("Skipping malformed answer record:", response);
+          }
+        });
+        
+        // Sort answers by date (newest first)
+        Object.keys(prevAnswersMap).forEach(qId => {
+          prevAnswersMap[qId].sort((a, b) => 
+            new Date(b.created_at) - new Date(a.created_at)
+          );
+        });
+        
+        console.log("Processed previous answers by question ID:", prevAnswersMap);
+        setPreviousAnswers(prevAnswersMap);
+      } else {
+        console.log("No previous answers found");
+      }
+    } catch (err) {
+      console.error('Exception fetching previous answers:', err);
+    }
+  };
 
   const handleAnswerChange = (questionId, value) => {
     setAnswers(prev => ({
@@ -59,68 +172,107 @@ function MathQuestions({ studentId, ipAddress }) {
     }));
   };
 
-  const handleSubmit = async () => {
-    setIsSubmitting(true);
-    const newFeedback = {};
-    let allCorrect = true;
+  // Handle individual question submission
+  const handleQuestionSubmit = async (questionId) => {
+    if (!questionId) {
+      console.error("Attempted to submit answer with undefined questionId");
+      return;
+    }
     
-    // Prepare results for each question
-    const questionResults = questions.map(question => {
-      const userAnswer = answers[question.id];
-      const isCorrect = checkFuzzyMatch(userAnswer, question.correctAnswer);
-      
-      if (!isCorrect && !secondChance[question.id]) {
-        // First incorrect attempt
-        newFeedback[question.id] = {
-          status: 'warning',
-          message: 'Your answer may not be correct. Please check and try again.'
-        };
-        setSecondChance(prev => ({...prev, [question.id]: true}));
-        allCorrect = false;
-      } else if (!isCorrect) {
-        // Second incorrect attempt
-        newFeedback[question.id] = {
-          status: 'error',
-          message: `Incorrect. The correct answer is ${question.correctAnswer}.`
-        };
-        allCorrect = false;
-      } else {
-        // Correct answer
-        newFeedback[question.id] = {
-          status: 'success',
-          message: 'Correct! Well done.'
-        };
+    setSubmittingQuestion(questionId);
+    
+    try {
+      const question = questions.find(q => q.id === questionId);
+      if (!question) {
+        console.error(`Question with ID ${questionId} not found`);
+        setSubmittingQuestion(null);
+        return;
       }
       
-      return {
+      // Make sure we have a valid question object with all required fields
+      if (!question.correctAnswer) {
+        console.error(`Question with ID ${questionId} has no correctAnswer field`, question);
+        setSubmittingQuestion(null);
+        return;
+      }
+      
+      const userAnswer = answers[questionId];
+      const isCorrect = checkFuzzyMatch(userAnswer, question.correctAnswer);
+      
+      // Prepare feedback for this question
+      const newFeedback = {
+        status: isCorrect ? 'success' : 'error',
+        message: isCorrect 
+          ? 'Correct! Well done.' 
+          : `Incorrect. The correct answer is ${question.correctAnswer}.`
+      };
+      
+      setFeedback(prev => ({
+        ...prev,
+        [questionId]: newFeedback
+      }));
+      
+      // Prepare the answer record
+      const answerRecord = {
         question_id: question.id,
         question_text: question.question,
         book_reference: question.bookNumber,
         user_answer: userAnswer,
         correct_answer: question.correctAnswer.toString(),
         is_correct: isCorrect,
-        attempt: secondChance[question.id] ? 2 : 1
+        attempt: 1 // Since we're not tracking second chances per question anymore
       };
-    });
-    
-    // Log to Supabase
-    const responseData = {
-      stud_id: studentId,
-      created_at: new Date().toISOString(),
-      ip: ipAddress || window.clientInformation?.userAgentData?.platform || navigator.userAgent,
-      homework_slug: slug || 'hw1',
-      answers: questionResults,
-    };
-    
-    await logResponseToSupabase(responseData);
-    
-    setFeedback(newFeedback);
-    setSubmitted(true);
-    setIsSubmitting(false);
-  };
-
-  const goToHome = () => {
-    navigate('/');
+      
+      console.log(`Submitting answer for question ${questionId}:`, answerRecord);
+      
+      // Log to Supabase - note that we're now storing a single answer per record
+      const responseData = {
+        stud_id: studentId,
+        created_at: new Date().toISOString(),
+        ip: window.clientInformation?.userAgentData?.platform || navigator.userAgent,
+        answer: answerRecord, // Changed from 'answers' to 'answer'
+      };
+      
+      // Log the full response data to verify the structure
+      console.log("Full response data to be sent to Supabase:", JSON.stringify(responseData, null, 2));
+      
+      const success = await logResponseToSupabase(responseData);
+      
+      if (success) {
+        console.log("Successfully logged answer to Supabase");
+        
+        // Update the previous answers state
+        setPreviousAnswers(prev => {
+          const updatedPrev = { ...prev };
+          
+          // Ensure we have a valid question ID
+          if (!questionId || questionId === undefined) {
+            console.error("Cannot update previous answers: questionId is undefined");
+            return prev;
+          }
+          
+          if (!updatedPrev[questionId]) {
+            updatedPrev[questionId] = [];
+          }
+          
+          // Add the new answer to the beginning of the array
+          updatedPrev[questionId] = [
+            {
+              ...answerRecord,
+              created_at: responseData.created_at
+            },
+            ...updatedPrev[questionId]
+          ];
+          
+          console.log(`Updated previous answers for question ${questionId}:`, updatedPrev[questionId]);
+          return updatedPrev;
+        });
+      }
+    } catch (err) {
+      console.error('Error submitting answer:', err);
+    } finally {
+      setSubmittingQuestion(null);
+    }
   };
 
   if (loading) {
@@ -131,39 +283,40 @@ function MathQuestions({ studentId, ipAddress }) {
     return <div className="text-center py-8 text-red-600">{error}</div>;
   }
 
+  // Render function for question items
+  const renderQuestionItems = (questionList) => {
+    return questionList.map(question => (
+      <QuestionItem
+        key={question.id}
+        question={question}
+        answer={answers[question.id]}
+        feedback={feedback[question.id]}
+        previousAnswers={previousAnswers[question.id] || []}
+        onAnswerChange={(value) => handleAnswerChange(question.id, value)}
+        onSubmit={handleQuestionSubmit}
+        isSubmitting={submittingQuestion === question.id}
+      />
+    ));
+  };
+
   return (
     <div>
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-semibold">Your Math Homework</h2>
-        <button
-          onClick={goToHome}
-          className="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700"
-        >
-          Return to Home
-        </button>
+      <div className="mb-6">
+        <h2 className="text-xl font-semibold">Math Problems</h2>
       </div>
       
-      <HomeworkNavigation currentSlug={slug} />
+      {activeQuestions.length > 0 && (
+        <div className="mb-8">
+          <h3 className="text-lg font-medium mb-4">Active Problems</h3>
+          {renderQuestionItems(activeQuestions)}
+        </div>
+      )}
       
-      {questions.map(question => (
-        <QuestionItem
-          key={question.id}
-          question={question}
-          answer={answers[question.id]}
-          feedback={feedback[question.id]}
-          onAnswerChange={(value) => handleAnswerChange(question.id, value)}
-        />
-      ))}
-      
-      <button
-        onClick={handleSubmit}
-        disabled={isSubmitting || questions.length === 0}
-        className={`w-full ${isSubmitting || questions.length === 0 ? 'bg-blue-400' : 'bg-blue-600 hover:bg-blue-700'} text-white py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2`}
-      >
-        {isSubmitting ? 'Submitting...' : 'Submit Answers'}
-      </button>
-      
-      {submitted && <FeedbackPanel />}
+      {overdueQuestions.length > 0 && (
+        <CollapsibleSection title={`Overdue Problems (${overdueQuestions.length})`} defaultOpen={false}>
+          {renderQuestionItems(overdueQuestions)}
+        </CollapsibleSection>
+      )}
     </div>
   );
 }
@@ -183,6 +336,7 @@ const checkFuzzyMatch = (userAnswer, correctAnswer) => {
 
 const logResponseToSupabase = async (responseData) => {
   try {
+    console.log("Sending to Supabase:", responseData);
     const { data, error } = await supabase
       .from('hw_responses')
       .insert([responseData]);

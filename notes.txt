@@ -11,11 +11,18 @@ Computerized homework:
 	- Cadence? (Oscar says daily)
 	- Homework feedback
 
-Supabase table has schema
+Supabase hw_responses table has schema
  column_name |        data_type         | character_maximum_length 
 -------------+--------------------------+--------------------------
  id          | uuid                     |                         
  created_at  | timestamp with time zone |                         
  stud_id     | integer                  |                         
- answers     | jsonb                    |                         
+ answer      | jsonb                    |                         
  ip          | text                     |   
+ question_id | text                     |
+
+ Supabase students table has schema
+ column_name |        data_type         | character_maximum_length 
+-------------+--------------------------+--------------------------
+ stud_id     | integer                  |                         
+ name        | text                     |                         

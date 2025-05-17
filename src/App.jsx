@@ -1,14 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import { supabase } from './supabaseClient.js';
 import LoginForm from './components/LoginForm.jsx';
 import MathQuestions from './components/MathQuestions.jsx';
-import Home from './components/Home.jsx';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [studentId, setStudentId] = useState('');
-  const [ipAddress, setIpAddress] = useState('');
+  const [studentName, setStudentName] = useState('');
+  const [loading, setLoading] = useState(true);
+  
+  // Fetch student's name from Supabase
+  const fetchStudentName = async (id) => {
+    try {
+      console.log("Fetching name for student ID:", id);
+      const { data, error } = await supabase
+        .from('students')
+        .select('name')
+        .eq('stud_id', id)
+        .single();
+      
+      if (error) {
+        console.error('Error fetching student data:', error);
+        return;
+      }
+      
+      console.log("Student data:", data);
+      if (data && data.name) {
+        setStudentName(data.name);
+      }
+    } catch (err) {
+      console.error('Exception fetching student data:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
   
   // Check for existing login on component mount
   useEffect(() => {
@@ -16,38 +43,47 @@ function App() {
     if (savedStudentId) {
       setStudentId(savedStudentId);
       setLoggedIn(true);
+      // Fetch the student's name if we have an ID from cookies
+      fetchStudentName(savedStudentId);
+    } else {
+      setLoading(false);
     }
-    
-    // Get IP address
-    const getIpAddress = async () => {
-      try {
-        // Simulate IP logging - in a real app, you might get this from the server
-        setIpAddress('192.168.1.' + Math.floor(Math.random() * 255));
-      } catch (error) {
-        console.error('Error fetching IP:', error);
-        setIpAddress('Unknown');
-      }
-    };
-    
-    getIpAddress();
   }, []);
   
   // Handle login
-  const handleLogin = (id) => {
+  const handleLogin = async (id) => {
     // Set cookie to expire in 7 days
     Cookies.set('studentId', id, { expires: 7 });
     setStudentId(id);
     setLoggedIn(true);
+    
+    // Fetch the student's name when they log in
+    await fetchStudentName(id);
   };
   
   // Handle logout
   const handleLogout = () => {
     Cookies.remove('studentId');
     setStudentId('');
+    setStudentName('');
     setLoggedIn(false);
     // Force reload to clear any state
     window.location.reload();
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
+        <div className="relative py-3 sm:max-w-xl sm:mx-auto">
+          <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+            <div className="max-w-md mx-auto text-center">
+              Loading...
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <Router>
@@ -63,26 +99,26 @@ function App() {
                     <LoginForm onLogin={handleLogin} />
                   ) : (
                     <div>
-                      <div className="mb-6 flex justify-between items-center">
-                        <div>
-                          <p className="text-sm text-gray-500">Student ID: {studentId}</p>
-                          <p className="text-sm text-gray-500">IP Address: {ipAddress}</p>
+                      <div className="mb-6">
+                        <div className="flex justify-between items-center mb-2">
+                          <div>
+                            <h2 className="text-xl font-semibold">Welcome, {studentName || `Student ${studentId}`}</h2>
+                            <p className="text-sm text-gray-500">Student ID: {studentId}</p>
+                          </div>
+                          <button
+                            onClick={handleLogout}
+                            className="px-3 py-1 text-sm bg-red-600 text-white rounded hover:bg-red-700"
+                          >
+                            Sign Out
+                          </button>
                         </div>
-                        <button
-                          onClick={handleLogout}
-                          className="px-3 py-1 text-sm bg-red-600 text-white rounded hover:bg-red-700"
-                        >
-                          Sign Out
-                        </button>
                       </div>
                       <Routes>
-                        <Route path="/" element={<Home studentId={studentId} />} />
                         <Route 
-                          path="/:slug" 
+                          path="/" 
                           element={
                             <MathQuestions 
                               studentId={studentId} 
-                              ipAddress={ipAddress} 
                             />
                           } 
                         />
