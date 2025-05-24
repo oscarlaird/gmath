@@ -1,23 +1,163 @@
 [
   {
-    "id": 1,
+    "id": 41,
+    "correctAnswer": "Things hidden since the foundation of the world",
+    "bookNumber": "ᚠᛇᚻ᛫ᛒᛦᚦ᛫ᚠᚱᚩᚠᚢᚱ",
+    "due_on": "2000-01-01",
+    "concept": 0
+  },
+  {
+    "id": 42,
+    "correctAnswer": "\\left\\lbrace12,14,16,18\\right\\rbrace",
+    "bookNumber": "1.2",
+    "due_on": "2025-05-23",
+    "concept": 1
+  },
+  {
+    "id": 43,
+    "correctAnswer": "{-6, -5, -4, -3, -2, -1}",
+    "bookNumber": "1.3",
+    "due_on": "2025-05-25",
+    "concept": 1
+  },
+  {
+    "id": 44,
+    "correctAnswer": "{1, 2, 3, 4, 5, 6, 8}",
+    "bookNumber": "1.4",
+    "due_on": "2025-05-25",
+    "concept": 1
+  },
+  {
+    "id": 45,
+    "correctAnswer": "4",
+    "bookNumber": "1.5",
+    "due_on": "2025-05-23",
+    "concept": 1
+  },
+  {
+    "id": 46,
+    "correctAnswer": "4",
+    "bookNumber": "1.6.I",
+    "due_on": "2025-05-25",
+    "concept": 1
+  },
+  {
+    "id": 47,
+    "correctAnswer": "6",
+    "bookNumber": "1.6.II",
+    "due_on": "2025-05-25",
+    "concept": 1
+  },
+  {
+    "id": 48,
+    "correctAnswer": "{2, 5, 6, 8, 9, 12, 15}",
+    "bookNumber": "1.6.III",
+    "due_on": "2025-05-25",
+    "concept": 1
+  },
+  {
+    "id": 49,
+    "correctAnswer": "{2, 8, 12}",
+    "bookNumber": "1.6.IV",
+    "due_on": "2025-05-25",
+    "concept": 1
+    },
+  {
+    "id": 50,
+    "correctAnswer": "7",
+    "bookNumber": "1.6.V",
+    "due_on": "2025-05-25",
+    "concept": 1
+  },
+  {
+    "id": 51,
     "correctAnswer": "3",
-    "bookNumber": "1.I.A",
-    "due_on": "2025-05-15",
+    "bookNumber": "1.6.VI",
+    "due_on": "2025-05-25",
     "concept": 1
   },
   {
-    "id": 2,
-    "correctAnswer": "12x^2 + 2",
-    "bookNumber": "1.II.B",
-    "due_on": "2025-05-17",
+    "id": 52,
+    "correctAnswer": "True",
+    "bookNumber": "1.7.I",
+    "due_on": "2025-05-25",
     "concept": 1
   },
   {
-    "id": 3,
-    "correctAnswer": "0.12",
-    "bookNumber": "1.III.C",
-    "due_on": "2025-05-17",
+    "id": 53,
+    "correctAnswer": "True",
+    "bookNumber": "1.7.II",
+    "due_on": "2025-05-25",
+    "concept": 1
+  },
+  {
+    "id": 54,
+    "correctAnswer": "False",
+    "bookNumber": "1.7.III",
+    "due_on": "2025-05-25",
+    "concept": 1
+  },
+  {
+    "id": 55,
+    "correctAnswer": "True",
+    "bookNumber": "1.7.IV",
+    "due_on": "2025-05-25",
+    "concept": 1
+  },
+  {
+    "id": 56,
+    "correctAnswer": "False",
+    "bookNumber": "1.7.V",
+    "due_on": "2025-05-25",
+    "concept": 1
+  },
+  {
+    "id": 57,
+    "correctAnswer": "15",
+    "bookNumber": "1.8",
+    "due_on": "2025-05-25",
+    "concept": 1
+  },
+  {
+    "id": 58,
+    "correctAnswer": "{1, 2, 3, 4, 5, 6}",
+    "bookNumber": "2.5.I",
+    "due_on": "2025-05-25",
+    "concept": 2
+  },
+  {
+    "id": 59,
+    "correctAnswer": "6",
+    "bookNumber": "2.5.II",
+    "due_on": "2025-05-25",
+    "concept": 2
+  },
+  {
+    "id": 60,
+    "correctAnswer": "{2, 4, 6}",
+    "bookNumber": "2.5.III",
+    "due_on": "2025-05-25",
+    "concept": 2
+  },
+  {
+    "id": 61,
+    "correctAnswer": "3",
+    "bookNumber": "2.5.IV",
+    "due_on": "2025-05-25",
+    "concept": 2
+  },
+  {
+    "id": 62,
+    "correctAnswer": "0.5",
+    "bookNumber": "2.5.V",
+    "due_on": "2025-05-25",
+    "concept": 2
+  },
+  {
+    "id": 63,
+    "correctAnswer": "0.8",
+    "bookNumber": "2.9",
+    "due_on": "2025-05-25",
     "concept": 2
   }
-] 
+]

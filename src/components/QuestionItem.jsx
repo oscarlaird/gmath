@@ -1,7 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import 'mathlive';
 
 function QuestionItem({ question, answer, feedback, onAnswerChange, previousAnswers, onSubmit, isSubmitting }) {
+  // Add useEffect to handle paste prevention specifically for math fields
+  useEffect(() => {
+    const preventPaste = (e) => {
+      e.preventDefault();
+    };
+
+    // Target all math-field elements
+    const mathFields = document.querySelectorAll('math-field');
+    mathFields.forEach(field => {
+      field.addEventListener('paste', preventPaste);
+      // Also prevent paste on the shadow DOM input if it exists
+      field.shadowRoot?.querySelector('input')?.addEventListener('paste', preventPaste);
+    });
+
+    // Cleanup function to remove event listeners
+    return () => {
+      mathFields.forEach(field => {
+        field.removeEventListener('paste', preventPaste);
+        field.shadowRoot?.querySelector('input')?.removeEventListener('paste', preventPaste);
+      });
+    };
+  }, []); // Empty dependency array means this runs once on mount
+
   // Format the due date
   const formatDueDate = (dateString) => {
     const date = new Date(dateString);
@@ -87,7 +110,7 @@ function QuestionItem({ question, answer, feedback, onAnswerChange, previousAnsw
               <li key={index} className="mb-2 pb-2 border-b border-[#e5e5dc] last:border-0 last:mb-0 last:pb-0">
                 <div className="flex items-center">
                   <div className={`w-4 h-4 inline-block mr-2 ${prev.is_correct ? 'bg-[#588157]' : 'bg-[#e76f51]'}`}></div>
-                  <span className="font-mono">{prev.user_answer}</span>
+                  <math-field read-only>{prev.user_answer}</math-field>
                   <span className="ml-2 text-xs text-[#6b7280]">
                     ({new Date(prev.created_at).toLocaleDateString()})
                   </span>
@@ -101,4 +124,13 @@ function QuestionItem({ question, answer, feedback, onAnswerChange, previousAnsw
   );
 }
 
-export default QuestionItem; 
+// Wrap with React.memo for performance
+export default React.memo(QuestionItem, (prevProps, nextProps) => {
+  // Only re-render if these props change
+  return (
+    prevProps.answer === nextProps.answer &&
+    prevProps.isSubmitting === nextProps.isSubmitting &&
+    JSON.stringify(prevProps.feedback) === JSON.stringify(nextProps.feedback) &&
+    JSON.stringify(prevProps.previousAnswers) === JSON.stringify(nextProps.previousAnswers)
+  );
+}); 

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Math API Test</title>
+</head>
+<body>
+    <h1>Math API Test</h1>
+    <div>
+        <label for="userAnswer">User Answer:</label>
+        <input type="text" id="userAnswer" value="4">
+    </div>
+    <div>
+        <label for="correctAnswer">Correct Answer:</label>
+        <input type="text" id="correctAnswer" value="4">
+    </div>
+    <button id="testButton">Test API</button>
+    <div id="result" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc;"></div>
+
+    <script>
+        document.getElementById('testButton').addEventListener('click', async () => {
+            const userAnswer = document.getElementById('userAnswer').value;
+            const correctAnswer = document.getElementById('correctAnswer').value;
+            const resultDiv = document.getElementById('result');
+            
+            resultDiv.innerHTML = 'Testing...';
+            
+            try {
+                const response = await fetch('/api/grade', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        userAnswer,
+                        correctAnswer
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`API error: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                resultDiv.innerHTML = `API Response: ${JSON.stringify(data)}`;
+            } catch (error) {
+                resultDiv.innerHTML = `Error: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>

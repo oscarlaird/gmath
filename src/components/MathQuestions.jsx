@@ -3,6 +3,7 @@ import { supabase } from '../supabaseClient.js';
 import 'mathlive';
 import { useNavigate } from 'react-router-dom';
 import QuestionItem from './QuestionItem.jsx';
+import { gradeAnswer } from '../utils/llmGrading';
 
 function CollapsibleSection({ title, children, defaultOpen = false }) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
@@ -37,6 +38,7 @@ function MathQuestions({ studentId }) {
   const [feedback, setFeedback] = useState({});
   const [previousAnswers, setPreviousAnswers] = useState({});
   const [submittingQuestion, setSubmittingQuestion] = useState(null);
+  const [submittingAll, setSubmittingAll] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
@@ -46,7 +48,7 @@ function MathQuestions({ studentId }) {
       setLoading(true);
       try {
         // Fetch homework questions
-        const response = await fetch('/homework.json');
+        const response = await fetch('/gmath_embed/homework.json');
         
         if (!response.ok) {
           throw new Error(`Failed to load homework: ${response.statusText}`);
@@ -56,12 +58,24 @@ function MathQuestions({ studentId }) {
         console.log("Fetched questions:", homeworkQuestions);
         setQuestions(homeworkQuestions);
         
-        // Sort questions into active and overdue
-        const today = new Date();
-        today.setHours(0, 0, 0, 0); // Reset hours to compare just the date
-        
+        const sortQuestions = (questions) => {
+          return questions.sort((a, b) => {
+            // First compare by due date
+            const dateA = new Date(a.due_on);
+            const dateB = new Date(b.due_on);
+            if (dateA < dateB) return -1;
+            if (dateA > dateB) return 1;
+            
+            // If dates are equal, sort by bookNumber
+            return a.bookNumber.localeCompare(b.bookNumber, undefined, {numeric: true});
+          });
+        };
+
         const active = [];
         const overdue = [];
+        
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); // Reset hours to compare just the date
         
         homeworkQuestions.forEach(question => {
           const dueDate = new Date(question.due_on);
@@ -73,11 +87,9 @@ function MathQuestions({ studentId }) {
           }
         });
         
-        console.log("Active questions:", active);
-        console.log("Overdue questions:", overdue);
-        
-        setActiveQuestions(active);
-        setOverdueQuestions(overdue);
+        // Sort both arrays
+        setActiveQuestions(sortQuestions(active));
+        setOverdueQuestions(sortQuestions(overdue));
         
         // Initialize answers object
         const initialAnswers = {};
@@ -112,53 +124,41 @@ function MathQuestions({ studentId }) {
       const { data, error } = await supabase
         .from('hw_responses')
         .select('*')
-        .eq('stud_id', studId);
+        .eq('stud_id', studId)
+        .order('created_at', { ascending: false }); // Get most recent first
       
       if (error) {
         console.error('Error fetching previous answers:', error);
         return;
       }
       
-      console.log("Raw responses from Supabase:", data);
-      
-      // Process the response data
       if (data && data.length > 0) {
         const prevAnswersMap = {};
         
-        // Each hw_response now contains a single answer for a single question
         data.forEach(response => {
-          // The answer column is now "answer" instead of "answers"
           const answer = response.answer;
           
           if (answer && typeof answer === 'object' && answer.question_id !== undefined) {
             const questionId = answer.question_id;
             
-            console.log(`Processing answer for question ${questionId}:`, answer);
-            
             if (!prevAnswersMap[questionId]) {
               prevAnswersMap[questionId] = [];
             }
             
-            prevAnswersMap[questionId].push({
-              ...answer,
-              created_at: response.created_at
-            });
-          } else {
-            console.warn("Skipping malformed answer record:", response);
+            // Only add if we don't already have a correct answer for this question
+            const hasCorrectAnswer = prevAnswersMap[questionId].some(a => a.is_correct);
+            if (!hasCorrectAnswer || answer.is_correct) {
+              prevAnswersMap[questionId].push({
+                user_answer: answer.user_answer,
+                is_correct: answer.is_correct,
+                created_at: response.created_at
+              });
+            }
           }
-        });
-        
-        // Sort answers by date (newest first)
-        Object.keys(prevAnswersMap).forEach(qId => {
-          prevAnswersMap[qId].sort((a, b) => 
-            new Date(b.created_at) - new Date(a.created_at)
-          );
         });
         
         console.log("Processed previous answers by question ID:", prevAnswersMap);
         setPreviousAnswers(prevAnswersMap);
-      } else {
-        console.log("No previous answers found");
       }
     } catch (err) {
       console.error('Exception fetching previous answers:', err);
@@ -189,38 +189,37 @@ function MathQuestions({ studentId }) {
         return;
       }
       
-      // Make sure we have a valid question object with all required fields
       if (!question.correctAnswer) {
-        console.error(`Question with ID ${questionId} has no correctAnswer field`, question);
+        console.error(`Question ${questionId} missing correctAnswer`);
         setSubmittingQuestion(null);
         return;
       }
       
       const userAnswer = answers[questionId];
-      const isCorrect = checkFuzzyMatch(userAnswer, question.correctAnswer);
+      if (!userAnswer) {
+        console.error(`No answer provided for question ${questionId}`);
+        setSubmittingQuestion(null);
+        return;
+      }
       
-      // Prepare feedback for this question
-      const newFeedback = {
-        status: isCorrect ? 'success' : 'error',
-        message: isCorrect 
-          ? 'Correct! Well done.' 
-          : `Incorrect. The correct answer is ${question.correctAnswer}.`
-      };
+      // Use LLM grading instead of fuzzy matching
+      const isCorrect = await gradeAnswer(userAnswer, question.correctAnswer, questionId);
       
+      // Update feedback without showing the correct answer
       setFeedback(prev => ({
         ...prev,
-        [questionId]: newFeedback
+        [questionId]: {
+          isCorrect,
+          status: isCorrect ? 'success' : 'error',
+          message: isCorrect ? 'Correct!' : 'Incorrect. Please try again.'
+        }
       }));
       
-      // Prepare the answer record
+      // Create answer record for Supabase
       const answerRecord = {
-        question_id: question.id,
-        question_text: question.question,
-        book_reference: question.bookNumber,
+        question_id: questionId,
         user_answer: userAnswer,
-        correct_answer: question.correctAnswer.toString(),
         is_correct: isCorrect,
-        attempt: 1 // Since we're not tracking second chances per question anymore
       };
       
       console.log(`Submitting answer for question ${questionId}:`, answerRecord);
@@ -241,37 +240,44 @@ function MathQuestions({ studentId }) {
       if (success) {
         console.log("Successfully logged answer to Supabase");
         
-        // Update the previous answers state
+        // Update the previous answers state with the actual Supabase response
         setPreviousAnswers(prev => {
-          const updatedPrev = { ...prev };
-          
-          // Ensure we have a valid question ID
-          if (!questionId || questionId === undefined) {
-            console.error("Cannot update previous answers: questionId is undefined");
-            return prev;
-          }
-          
-          if (!updatedPrev[questionId]) {
-            updatedPrev[questionId] = [];
-          }
-          
-          // Add the new answer to the beginning of the array
-          updatedPrev[questionId] = [
-            {
-              ...answerRecord,
-              created_at: responseData.created_at
-            },
-            ...updatedPrev[questionId]
-          ];
-          
-          console.log(`Updated previous answers for question ${questionId}:`, updatedPrev[questionId]);
-          return updatedPrev;
+          const questionAnswers = prev[questionId] || [];
+          return {
+            ...prev,
+            [questionId]: [
+              ...questionAnswers,
+              {
+                user_answer: userAnswer,
+                is_correct: isCorrect,
+                created_at: responseData.created_at
+              }
+            ]
+          };
         });
       }
-    } catch (err) {
-      console.error('Error submitting answer:', err);
+    } catch (error) {
+      console.error('Error in LLM check:', error);
     } finally {
       setSubmittingQuestion(null);
+    }
+  };
+
+  const handleSubmitAll = async () => {
+    setSubmittingAll(true);
+    
+    try {
+      // Get all questions that have answers
+      const questionsToSubmit = questions.filter(q => answers[q.id] && !feedback[q.id]?.isCorrect);
+      
+      // Submit each question sequentially
+      for (const question of questionsToSubmit) {
+        await handleQuestionSubmit(question.id);
+      }
+    } catch (error) {
+      console.error('Error submitting all answers:', error);
+    } finally {
+      setSubmittingAll(false);
     }
   };
 
@@ -301,8 +307,40 @@ function MathQuestions({ studentId }) {
 
   return (
     <div>
-      <div className="mb-6 pb-4 border-b border-[#e5e5dc]">
+      <div className="mb-6 pb-4 border-b border-[#e5e5dc] flex justify-between items-center">
         <h2 className="text-xl font-normal text-[#5a7d7c]">Math Problems</h2>
+        <div className="flex items-center gap-4">
+          <div className="flex flex-col items-end gap-1">
+            {Object.entries(
+              activeQuestions.reduce((acc, q) => {
+                const dueDate = new Date(q.due_on).toISOString().split('T')[0];
+                if (!acc[dueDate]) {
+                  acc[dueDate] = { total: 0, correct: 0 };
+                }
+                acc[dueDate].total++;
+                if (previousAnswers[q.id]?.some(answer => answer.is_correct)) {
+                  acc[dueDate].correct++;
+                }
+                return acc;
+              }, {})
+            ).map(([date, { correct, total }]) => (
+              <div key={date} className="text-sm text-gray-600">
+                {date}: {correct} / {total} correct
+              </div>
+            ))}
+          </div>
+          <button
+            onClick={handleSubmitAll}
+            disabled={submittingAll || questions.every(q => feedback[q.id]?.isCorrect)}
+            className={`px-4 py-2 rounded-md text-white font-medium ${
+              submittingAll || questions.every(q => feedback[q.id]?.isCorrect)
+                ? 'bg-gray-400 cursor-not-allowed'
+                : 'bg-blue-600 hover:bg-blue-700'
+            }`}
+          >
+            {submittingAll ? 'Submitting...' : 'Submit All'}
+          </button>
+        </div>
       </div>
       
       {activeQuestions.length > 0 && (

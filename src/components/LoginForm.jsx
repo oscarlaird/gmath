@@ -53,14 +53,14 @@ function LoginForm({ onLogin }) {
       <h2 className="text-xl font-normal mb-6 text-[#5a7d7c]">Login to access your homework</h2>
       <form onSubmit={handleSubmit} className="border border-[#e5e5dc] p-6 bg-[#fafaf5]">
         <div className="mb-4">
-          <label htmlFor="studentName" className="block text-[#6b7280] mb-2">Full Name</label>
+          <label htmlFor="studentName" className="block text-[#6b7280] mb-2">Name</label>
           <input
             type="text"
             id="studentName"
             value={studentName}
             onChange={(e) => setStudentName(e.target.value)}
             className="w-full px-3 py-2 border border-[#d1d1c7] focus:outline-none focus:border-[#85b7b6]"
-            placeholder="Enter your full name"
+            placeholder="Enter your name"
           />
         </div>
         
