@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .test-case { margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .success { background-color: #d4edda; }
+        .failure { background-color: #f8d7da; }
+        button { padding: 8px 16px; margin-top: 10px; }
+        pre { background: #f5f5f5; padding: 10px; border-radius: 4px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>Math Grading API Test</h1>
+    
+    <div class="test-case">
+        <h3>Test 1: Exact Match</h3>
+        <p>User Answer: <input type="text" id="test1-user" value="4"></p>
+        <p>Correct Answer: <input type="text" id="test1-correct" value="4"></p>
+        <button onclick="runTest(1)">Run Test</button>
+        <pre id="test1-result">Results will appear here</pre>
+    </div>
+    
+    <div class="test-case">
+        <h3>Test 2: With Acceptable Answers</h3>
+        <p>User Answer: <input type="text" id="test2-user" value="2+2"></p>
+        <p>Correct Answer: <input type="text" id="test2-correct" value="4"></p>
+        <p>Acceptable Answers: <input type="text" id="test2-acceptable" value="2+2,2*2"></p>
+        <button onclick="runTest(2)">Run Test</button>
+        <pre id="test2-result">Results will appear here</pre>
+    </div>
+
+    <div class="test-case">
+        <h3>Test 3: Direct API Call (No Base Path)</h3>
+        <p>User Answer: <input type="text" id="test3-user" value="4"></p>
+        <p>Correct Answer: <input type="text" id="test3-correct" value="4"></p>
+        <button onclick="runTest(3)">Run Test</button>
+        <pre id="test3-result">Results will appear here</pre>
+    </div>
+
+    <div class="test-case">
+        <h3>Test 4: API Call with Base Path</h3>
+        <p>User Answer: <input type="text" id="test4-user" value="4"></p>
+        <p>Correct Answer: <input type="text" id="test4-correct" value="4"></p>
+        <button onclick="runTest(4)">Run Test</button>
+        <pre id="test4-result">Results will appear here</pre>
+    </div>
+
+    <script>
+        async function runTest(testNumber) {
+            const resultElement = document.getElementById(`test${testNumber}-result`);
+            resultElement.textContent = 'Testing...';
+            
+            const userAnswer = document.getElementById(`test${testNumber}-user`).value;
+            const correctAnswer = document.getElementById(`test${testNumber}-correct`).value;
+            
+            try {
+                let url = '';
+                let acceptableAnswers = [];
+                
+                // Different URL patterns for different tests
+                if (testNumber === 1) {
+                    url = '/api/grade';
+                } else if (testNumber === 2) {
+                    url = '/api/grade';
+                    acceptableAnswers = document.getElementById('test2-acceptable').value.split(',');
+                } else if (testNumber === 3) {
+                    url = '/api/grade';
+                } else if (testNumber === 4) {
+                    url = '/gmath_embed/api/grade';
+                }
+                
+                const startTime = performance.now();
+                
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        userAnswer,
+                        correctAnswer,
+                        acceptableAnswers
+                    })
+                });
+                
+                const endTime = performance.now();
+                const duration = (endTime - startTime).toFixed(2);
+                
+                if (!response.ok) {
+                    throw new Error(`API error: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                const testCase = document.querySelectorAll('.test-case')[testNumber - 1];
+                testCase.className = data.isCorrect ? 'test-case success' : 'test-case failure';
+                
+                resultElement.textContent = `Response (${duration}ms):\n${JSON.stringify(data, null, 2)}`;
+            } catch (error) {
+                const testCase = document.querySelectorAll('.test-case')[testNumber - 1];
+                testCase.className = 'test-case failure';
+                resultElement.textContent = `Error: ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+Canceled
+	- They hit submit, then it shows answer?  In-depth solution?  If wrong, a second chance?
+	
+Done
+	- Buttons for special chars, fractions, PMF
+	- IP Logging
+	- Login w/ID number.  Anything more?
+	- (Problems are in their book)
+	- (Cadence? (Oscar says daily))
+
+Core
+
+Easy
+	- Ban pasting / Log pasting
+
+Hard
+	- How to fuzzy check?  Ask them to check?
+	- Is SRS nuts?
+	- Homework feedback
+	- Different problems for different students
+	- Piecewise functions
+	- Tables
+
+Supabase hw_responses table has schema
+ column_name |        data_type         | character_maximum_length 
+-------------+--------------------------+--------------------------
+ id          | uuid                     |                         
+ created_at  | timestamp with time zone |                         
+ stud_id     | integer                  |                         
+ answer      | jsonb                    |                         
+ ip          | text                     |   
+ question_id | text                     |
+
+ Supabase students table has schema
+ column_name |        data_type         | character_maximum_length 
+-------------+--------------------------+--------------------------
+ stud_id     | integer                  |                         
+ name        | text                     |                         
