@@ -16022,5 +16022,426 @@
     "class": "S",
     "defaultMode": "text",
     "notes": "CI is (-14.26, -2.74). Claim: no effect (μ_d=0). Since 0>-2.74 (outside interval), evidence AGAINST. Accept: against, against the claim, evidence against."
+  },
+  {
+    "id": 3762,
+    "correctAnswer": "fixed",
+    "bookNumber": "30.1.I",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "Is population mean μ fixed or random? FIXED (it's a parameter). Accept: fixed, Fixed."
+  },
+  {
+    "id": 3763,
+    "correctAnswer": "random",
+    "bookNumber": "30.1.II",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "Is sample mean x̄ fixed or random? RANDOM (varies from sample to sample). Accept: random, Random."
+  },
+  {
+    "id": 3764,
+    "correctAnswer": "fixed",
+    "bookNumber": "30.1.III",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "Is population std dev σ fixed or random? FIXED (it's a parameter). Accept: fixed, Fixed."
+  },
+  {
+    "id": 3765,
+    "correctAnswer": "fixed",
+    "bookNumber": "30.1.IV",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "Is std dev of sampling distribution σ_x̄ fixed or random? FIXED (σ/√n where both are fixed). Accept: fixed, Fixed."
+  },
+  {
+    "id": 3766,
+    "correctAnswer": "False",
+    "bookNumber": "30.2.I",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "T/F: Sampling distribution of x̄ describes distribution of individual observations in a single sample. FALSE (describes how x̄ varies across samples). Accept: False, F, false."
+  },
+  {
+    "id": 3767,
+    "correctAnswer": "False",
+    "bookNumber": "30.2.II",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "T/F: If we increase sample size, mean of sampling distribution of x̄ will change. FALSE (E[x̄]=μ regardless of n). Accept: False, F, false."
+  },
+  {
+    "id": 3768,
+    "correctAnswer": "True",
+    "bookNumber": "30.2.III",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "T/F: If population is normal, sampling distribution of x̄ is normal for any sample size. TRUE. Accept: True, T, true."
+  },
+  {
+    "id": 3769,
+    "correctAnswer": "2",
+    "bookNumber": "30.3",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "S",
+    "notes": "Calculate σ_x̄ when σ=12 and n=36. σ_x̄ = 12/√36 = 12/6 = 2. Accept: 2."
+  },
+  {
+    "id": 3770,
+    "correctAnswer": "0.0004",
+    "bookNumber": "30.4.I",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "S",
+    "notes": "Pennies: μ=2.5g, σ=0.03g, normal. P(single penny < 2.4g) = P(Z < -3.33) ≈ 0.0004. Accept: 0.0004, 0.00043, 0.0005."
+  },
+  {
+    "id": 3771,
+    "correctAnswer": "2.5",
+    "bookNumber": "30.4.II",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "S",
+    "notes": "Pennies: μ=2.5g. Mean of sampling distribution of x̄ for n=10 = E[x̄] = μ = 2.5. Accept: 2.5."
+  },
+  {
+    "id": 3772,
+    "correctAnswer": "0.0095",
+    "bookNumber": "30.4.III",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "S",
+    "notes": "Pennies: σ=0.03g, n=10. σ_x̄ = 0.03/√10 ≈ 0.0095. Accept: 0.0095, 0.009, 0.01, 0.00949."
+  },
+  {
+    "id": 3773,
+    "correctAnswer": "0",
+    "bookNumber": "30.4.IV",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "S",
+    "notes": "Pennies: P(mean of 10 < 2.4g) = P(Z < -10.5) ≈ 0 (essentially zero). Accept: 0, 0.0000, approximately 0."
+  },
+  {
+    "id": 3774,
+    "correctAnswer": "right-skewed",
+    "bookNumber": "30.5.I",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "Housing: no homes below $600K but some above $3M. Distribution is RIGHT-SKEWED. Accept: right-skewed, right skewed, skewed right."
+  },
+  {
+    "id": 3775,
+    "correctAnswer": "No",
+    "bookNumber": "30.5.II",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "Housing: Can we use normal approximation for P(single home > $1.4M)? NO - distribution is skewed, not normal. Accept: No, no, N."
+  },
+  {
+    "id": 3776,
+    "correctAnswer": "0.0049",
+    "bookNumber": "30.5.III",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "S",
+    "notes": "Housing: μ=$1.3M, σ=$300K, n=60. P(x̄ > $1.4M) = P(Z > 2.58) ≈ 0.0049. Accept: 0.0049, 0.005, 0.0050."
+  },
+  {
+    "id": 3777,
+    "correctAnswer": "left-skewed",
+    "bookNumber": "30.6.I",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "Test scores: median=74, mean=70, some below 20. Distribution is LEFT-SKEWED (median > mean). Accept: left-skewed, left skewed, skewed left."
+  },
+  {
+    "id": 3778,
+    "correctAnswer": "0.0008",
+    "bookNumber": "30.6.II",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "S",
+    "notes": "Test scores: μ=70, σ=10, n=40. P(x̄ > 75) = P(Z > 3.16) ≈ 0.0008. Accept: 0.0008, 0.001, 0.00079."
+  },
+  {
+    "id": 3779,
+    "correctAnswer": "decrease",
+    "bookNumber": "30.6.III",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "If n changes from 40 to 100, σ_x̄ will DECREASE (from 1.58 to 1.0). Accept: decrease, decreases, smaller, lower."
+  },
+  {
+    "id": 3780,
+    "correctAnswer": "9",
+    "bookNumber": "30.7",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "S",
+    "notes": "To reduce σ_x̄ by factor of 3, must multiply sample size by 9 (since σ_x̄ = σ/√n). Accept: 9, multiply by 9, increase by factor of 9."
+  },
+  {
+    "id": 3781,
+    "correctAnswer": "True",
+    "bookNumber": "31.1.I",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "T/F: t-distribution has heavier tails than standard normal. TRUE. Accept: True, T, true."
+  },
+  {
+    "id": 3782,
+    "correctAnswer": "True",
+    "bookNumber": "31.1.II",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "T/F: As sample size increases, t-distribution approaches standard normal. TRUE. Accept: True, T, true."
+  },
+  {
+    "id": 3783,
+    "correctAnswer": "True",
+    "bookNumber": "31.1.III",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "T/F: We use t-distribution instead of normal because we estimate σ with s. TRUE. Accept: True, T, true."
+  },
+  {
+    "id": 3784,
+    "correctAnswer": "False",
+    "bookNumber": "31.1.IV",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "T/F: df for one-sample t-test equals sample size n. FALSE (df = n-1). Accept: False, F, false."
+  },
+  {
+    "id": 3785,
+    "correctAnswer": "Random",
+    "bookNumber": "31.2.I",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "Teacher measures all 25 students in her class. Which condition fails? RANDOM (not a random sample, it's a census). Accept: Random, random condition, not random."
+  },
+  {
+    "id": 3786,
+    "correctAnswer": "all conditions met",
+    "bookNumber": "31.2.II",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "45 runners from 5000, moderately right-skewed. ALL CONDITIONS MET (random, n<10% of 5000, n≥30 so CLT applies). Accept: all conditions met, all met, none fail."
+  },
+  {
+    "id": 3787,
+    "correctAnswer": "Normal/Large Sample",
+    "bookNumber": "31.2.III",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "12 measurements, two extreme outliers and strong skewness. NORMAL/LARGE SAMPLE condition fails (n<30 with outliers). Accept: Normal/Large Sample, normal, normality."
+  },
+  {
+    "id": 3788,
+    "correctAnswer": "all conditions met",
+    "bookNumber": "31.2.IV",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "60 households from 200,000, no outliers, roughly symmetric. ALL CONDITIONS MET. Accept: all conditions met, all met, none fail."
+  },
+  {
+    "id": 3789,
+    "correctAnswer": "19",
+    "bookNumber": "31.3.I",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "S",
+    "notes": "n=20, x̄=84, s=12, μ₀=80. df = n-1 = 19. Accept: 19."
+  },
+  {
+    "id": 3790,
+    "correctAnswer": "2.68",
+    "bookNumber": "31.3.II",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "S",
+    "notes": "n=20, s=12. SE = s/√n = 12/√20 ≈ 2.68. Accept: 2.68, 2.683, 2.7."
+  },
+  {
+    "id": 3791,
+    "correctAnswer": "1.49",
+    "bookNumber": "31.3.III",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "S",
+    "notes": "x̄=84, μ₀=80, SE=2.68. t = (84-80)/2.68 ≈ 1.49. Accept: 1.49, 1.5, 1.491."
+  },
+  {
+    "id": 3792,
+    "correctAnswer": "right-tailed",
+    "bookNumber": "31.3.IV",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "If H_a: μ > 80, this is a RIGHT-TAILED test. Accept: right-tailed, right tailed, right, one-tailed right."
+  },
+  {
+    "id": 3793,
+    "correctAnswer": "1.33",
+    "bookNumber": "31.4.I",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "S",
+    "notes": "n=36, x̄=52, s=9, μ₀=50. t = (52-50)/(9/6) = 2/1.5 ≈ 1.33. Accept: 1.33, 1.3, 1.333."
+  },
+  {
+    "id": 3794,
+    "correctAnswer": "35",
+    "bookNumber": "31.4.II",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "S",
+    "notes": "n=36. df = n-1 = 35. Accept: 35."
+  },
+  {
+    "id": 3795,
+    "correctAnswer": "0.19",
+    "bookNumber": "31.4.III",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "S",
+    "notes": "t=1.33, df=35, two-tailed. p-value = 2×P(T>1.33) ≈ 0.19. Accept: 0.19, 0.1916, 0.192."
+  },
+  {
+    "id": 3796,
+    "correctAnswer": "fail to reject",
+    "bookNumber": "31.4.IV",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "p=0.19 > α=0.05, so FAIL TO REJECT H₀. Accept: fail to reject, do not reject, fail to reject H0."
+  },
+  {
+    "id": 3797,
+    "correctAnswer": "\\mu = 500",
+    "bookNumber": "31.5.I",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "S",
+    "notes": "Batteries: manufacturer claims μ=500 hours. H₀: μ = 500. Accept: μ=500, mu=500, H0: μ=500."
+  },
+  {
+    "id": 3798,
+    "correctAnswer": "\\mu < 500",
+    "bookNumber": "31.5.II",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "S",
+    "notes": "Consumer group suspects batteries last LESS. H_a: μ < 500. Accept: μ<500, mu<500, Ha: μ<500."
+  },
+  {
+    "id": 3799,
+    "correctAnswer": "-1.89",
+    "bookNumber": "31.5.III",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "S",
+    "notes": "n=28, x̄=485, s=42, μ₀=500. t = (485-500)/(42/√28) ≈ -1.89. Accept: -1.89, -1.9, -1.890."
+  },
+  {
+    "id": 3800,
+    "correctAnswer": "0.035",
+    "bookNumber": "31.5.IV",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "S",
+    "notes": "t=-1.89, df=27, left-tailed. p-value = P(T<-1.89) ≈ 0.035. Accept: 0.035, 0.0347, 0.034."
+  },
+  {
+    "id": 3801,
+    "correctAnswer": "reject",
+    "bookNumber": "31.5.V",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "S",
+    "defaultMode": "text",
+    "freeResponse": true,
+    "notes": "p=0.035 < α=0.05, REJECT H₀. Evidence that batteries last less than 500 hours on average."
+  },
+  {
+    "id": 3802,
+    "correctAnswer": "one-tailed",
+    "bookNumber": "31.6.I",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "Testing if diet causes weight LOSS (μ > 0). ONE-TAILED test. Accept: one-tailed, one tailed, right-tailed."
+  },
+  {
+    "id": 3803,
+    "correctAnswer": "2.84",
+    "bookNumber": "31.6.II",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "S",
+    "notes": "n=16, x̄=3.2, s=4.5. t = (3.2-0)/(4.5/4) = 3.2/1.125 ≈ 2.84. Accept: 2.84, 2.844, 2.8."
+  },
+  {
+    "id": 3804,
+    "correctAnswer": "0.006",
+    "bookNumber": "31.6.III",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "S",
+    "notes": "t=2.84, df=15, right-tailed. p-value = P(T>2.84) ≈ 0.006. Accept: 0.006, 0.0062, 0.007."
+  },
+  {
+    "id": 3805,
+    "correctAnswer": "Yes",
+    "bookNumber": "31.6.IV",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "p=0.006 < α=0.05. YES, there is evidence the diet causes weight loss on average. Accept: Yes, yes, Y."
   }
 ]
