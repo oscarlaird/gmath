@@ -14853,7 +14853,7 @@
     "due_on": "2026-01-15",
     "concept": 29,
     "class": "S",
-    "notes": "95% CI (0.43, 0.51) with p̂=0.47, ME=0.04. Find n. ME=z*√(p̂(1-p̂)/n). 0.04=1.96√(0.2491/n). n=0.2491/(0.04/1.96)²=598.8≈599. Accept: 599, 600."
+    "notes": "95% CI (0.43, 0.51) with p̂=0.47, ME=0.04. Find n. ME=z*√(p̂(1-p̂)/n). 0.04=1.96√(0.2491/n). n=0.2491/(0.04/1.96)²=598.8≈599. Accept: 598, 599, 600."
   },
   {
     "id": 3716,
@@ -14862,7 +14862,7 @@
     "due_on": "2026-01-15",
     "concept": 29,
     "class": "S",
-    "notes": "95% CI with ME≤2% using p̂=0.5. n=0.25×(1.96/0.02)²=0.25×9604=2401. Accept: 2401."
+    "notes": "95% CI with ME≤2% using p̂=0.5. n=0.25×(1.96/0.02)²=0.25×9604=2401. Accept anything between 2400 and 2405.  Don't be a stickler for precision"
   },
   {
     "id": 3717,
@@ -15025,8 +15025,1002 @@
     "due_on": "2026-01-15",
     "concept": 29,
     "class": "S",
-    "freeResponse": true,
     "defaultMode": "text",
-    "notes": "If np̂ < 10, what problem does this create? The normal approximation to the sampling distribution is not valid, so the CI formula doesn't work properly."
+    "notes": "If np̂ < 10, what problem does this create? The normal approximation to the sampling distribution is not valid, so the CI formula doesn't work properly.  Be pretty lenient here."
+  },
+  {
+    "id": 4814,
+    "correctAnswer": "increasing",
+    "bookNumber": "30.1.I",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "defaultMode": "text",
+    "notes": "r=5 and r is increasing. Since r>0 and increasing, distance is increasing. Accept: increasing, inc."
+  },
+  {
+    "id": 4815,
+    "correctAnswer": "increasing",
+    "bookNumber": "30.1.II",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "defaultMode": "text",
+    "notes": "r=-3 and r is decreasing (more negative). Since r<0 and decreasing, |r| increases, so distance is increasing. Accept: increasing, inc."
+  },
+  {
+    "id": 4816,
+    "correctAnswer": "decreasing",
+    "bookNumber": "30.1.III",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "defaultMode": "text",
+    "notes": "r=-7 and r is increasing (less negative). Since r<0 and increasing, |r| decreases, so distance is decreasing. Accept: decreasing, dec."
+  },
+  {
+    "id": 4817,
+    "correctAnswer": "decreasing",
+    "bookNumber": "30.1.IV",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "defaultMode": "text",
+    "notes": "r=0.5 and r is decreasing. Since r>0 and decreasing, distance is decreasing. Accept: decreasing, dec."
+  },
+  {
+    "id": 4818,
+    "correctAnswer": "increasing",
+    "bookNumber": "30.1.V",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "defaultMode": "text",
+    "notes": "r=-0.5 and r is decreasing. Since r<0 and decreasing, |r| increases, so distance is increasing. Accept: increasing, inc."
+  },
+  {
+    "id": 4819,
+    "correctAnswer": "-\\frac{6}{\\pi}",
+    "bookNumber": "30.2.I",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "notes": "Table: θ=0,π/4,π/2,3π/4,π,5π/4 and r=4,3,1,-1,-2,-1. AROC over [0,π/2] = (1-4)/(π/2) = -6/π. Accept: -6/π, -6/pi."
+  },
+  {
+    "id": 4820,
+    "correctAnswer": "-\\frac{8}{\\pi}",
+    "bookNumber": "30.2.II",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "notes": "Table: AROC over [π/2,3π/4] = (-1-1)/(π/4) = -8/π. Accept: -8/π, -8/pi."
+  },
+  {
+    "id": 4821,
+    "correctAnswer": "decreasing",
+    "bookNumber": "30.2.III",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "defaultMode": "text",
+    "notes": "Table: On [0,π/4], r goes 4→3. r>0 and decreasing, so distance is decreasing. Accept: decreasing, dec."
+  },
+  {
+    "id": 4822,
+    "correctAnswer": "increasing",
+    "bookNumber": "30.2.IV",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "defaultMode": "text",
+    "notes": "Table: On [3π/4,π], r goes -1→-2. r<0 and decreasing, so distance is increasing. Accept: increasing, inc."
+  },
+  {
+    "id": 4823,
+    "correctAnswer": "decreasing",
+    "bookNumber": "30.2.V",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "defaultMode": "text",
+    "notes": "Table: On [π,5π/4], r goes -2→-1. r<0 and increasing, so distance is decreasing. Accept: decreasing, dec."
+  },
+  {
+    "id": 4824,
+    "correctAnswer": "-\\frac{9}{2\\pi}",
+    "bookNumber": "30.3.I",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "notes": "r=2+3cos(θ). AROC over [0,π/3]: r(0)=5, r(π/3)=7/2. AROC=(7/2-5)/(π/3)=(-3/2)/(π/3)=-9/(2π). Accept: -9/(2π), -9/(2pi), -4.5/π."
+  },
+  {
+    "id": 4825,
+    "correctAnswer": "-\\frac{9}{\\pi}",
+    "bookNumber": "30.3.II",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "notes": "r=2+3cos(θ). AROC over [π/3,2π/3]: r(π/3)=7/2, r(2π/3)=1/2. AROC=(1/2-7/2)/(π/3)=-9/π. Accept: -9/π, -9/pi."
+  },
+  {
+    "id": 4826,
+    "correctAnswer": "positive",
+    "bookNumber": "30.4.I",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "defaultMode": "text",
+    "notes": "r=4sin(θ) for θ∈[0,π]. At θ=π/4, is r positive or negative? r=4sin(π/4)=2√2>0. Accept: positive, pos, +."
+  },
+  {
+    "id": 4827,
+    "correctAnswer": "increasing",
+    "bookNumber": "30.4.II",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "defaultMode": "text",
+    "notes": "r=4sin(θ). At θ=π/4, is r increasing or decreasing? r'=4cos(θ), r'(π/4)=2√2>0, so increasing. Accept: increasing, inc."
+  },
+  {
+    "id": 4828,
+    "correctAnswer": "increasing",
+    "bookNumber": "30.4.III",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "defaultMode": "text",
+    "notes": "r=4sin(θ). At θ=π/4, is distance from origin increasing or decreasing? r>0 and r increasing, so distance increasing. Accept: increasing, inc."
+  },
+  {
+    "id": 4829,
+    "correctAnswer": "decreasing",
+    "bookNumber": "30.4.IV",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "defaultMode": "text",
+    "notes": "r=4sin(θ). At θ=3π/4, r=2√2>0, r'=4cos(3π/4)<0. r>0 and decreasing, so distance decreasing. Accept: decreasing, dec."
+  },
+  {
+    "id": 4830,
+    "correctAnswer": "-\\frac{6}{\\pi}",
+    "bookNumber": "30.5.I",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "notes": "Table: θ=0,π/4,π/2,3π/4,π and r=-1,-3,-4,-3,-1. AROC over [0,π/2] = (-4-(-1))/(π/2) = -6/π. Accept: -6/π, -6/pi."
+  },
+  {
+    "id": 4831,
+    "correctAnswer": "decreasing",
+    "bookNumber": "30.5.II",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "defaultMode": "text",
+    "notes": "Table with r always negative. On [0,π/2], r goes -1→-4, so r is decreasing (more negative). Accept: decreasing, dec."
+  },
+  {
+    "id": 4832,
+    "correctAnswer": "increasing",
+    "bookNumber": "30.5.III",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "defaultMode": "text",
+    "notes": "Table: On [0,π/2], r<0 and decreasing, so |r| increases, distance increasing. Accept: increasing, inc."
+  },
+  {
+    "id": 4833,
+    "correctAnswer": "decreasing",
+    "bookNumber": "30.5.IV",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "defaultMode": "text",
+    "notes": "Table: On [π/2,π], r goes -4→-1 (r<0 and increasing), so distance decreasing. Accept: decreasing, dec."
+  },
+  {
+    "id": 4834,
+    "correctAnswer": "\\frac{\\pi}{2}",
+    "bookNumber": "30.5.V",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "notes": "Table: Farthest from origin when |r| is max. r=-4 at θ=π/2, so |r|=4 is max. Accept: π/2, pi/2."
+  },
+  {
+    "id": 4835,
+    "correctAnswer": "-1",
+    "bookNumber": "30.6.I",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "notes": "Limaçon r=1-2cos(θ). At P (θ=0), r = 1-2cos(0) = 1-2 = -1. Accept: -1."
+  },
+  {
+    "id": 4836,
+    "correctAnswer": "decreasing",
+    "bookNumber": "30.6.II",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "defaultMode": "text",
+    "notes": "Limaçon r=1-2cos(θ). At P (θ=0), r=-1<0. As θ increases, r increases (becomes less negative), so distance decreases. Accept: decreasing, dec."
+  },
+  {
+    "id": 4837,
+    "correctAnswer": "\\frac{\\pi}{3}",
+    "bookNumber": "30.6.III",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "notes": "Limaçon r=1-2cos(θ). Origin when r=0: 1-2cos(θ)=0, cos(θ)=1/2, θ=π/3 in [0,π]. Accept: π/3, pi/3."
+  },
+  {
+    "id": 4838,
+    "correctAnswer": "3",
+    "bookNumber": "30.6.IV",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "notes": "Limaçon r=1-2cos(θ). At R (θ=π), r=1-2(-1)=3. Distance=|r|=3. Accept: 3."
+  },
+  {
+    "id": 4839,
+    "correctAnswer": "\\frac{12}{\\pi}",
+    "bookNumber": "30.7.I",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "notes": "Particle on polar curve, θ=t. At θ=π/6: r=2 (inc), at θ=π/3: r=4 (dec). AROC = (4-2)/(π/3-π/6) = 2/(π/6) = 12/π. Accept: 12/π, 12/pi."
+  },
+  {
+    "id": 4840,
+    "correctAnswer": "away",
+    "bookNumber": "30.7.II",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "defaultMode": "text",
+    "notes": "At θ=π/6: r=2>0 and r increasing. Particle moving away from origin. Accept: away, away from origin."
+  },
+  {
+    "id": 4841,
+    "correctAnswer": "toward",
+    "bookNumber": "30.7.III",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "defaultMode": "text",
+    "notes": "At θ=π/3: r=4>0 and r decreasing. Particle moving toward origin. Accept: toward, towards, toward origin."
+  },
+  {
+    "id": 4842,
+    "correctAnswer": "2",
+    "bookNumber": "30.8.I",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "notes": "Rose r=2cos(2θ). At A (θ=0), r = 2cos(0) = 2. Accept: 2."
+  },
+  {
+    "id": 4843,
+    "correctAnswer": "2",
+    "bookNumber": "30.8.II",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "notes": "Rose r=2cos(2θ). Max distance when |r| is max. |cos(2θ)|≤1, so |r|≤2. Max distance = 2. Accept: 2."
+  },
+  {
+    "id": 4844,
+    "correctAnswer": "0",
+    "bookNumber": "30.8.III",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "notes": "Rose r=2cos(2θ). At B (θ=π/4), r = 2cos(π/2) = 0. Distance = 0. Accept: 0."
+  },
+  {
+    "id": 4845,
+    "correctAnswer": "decreasing",
+    "bookNumber": "30.8.IV",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "defaultMode": "text",
+    "notes": "Rose r=2cos(2θ). On [0,π/4], r goes 2→0, r>0 and decreasing, so distance decreasing. Accept: decreasing, dec."
+  },
+  {
+    "id": 4846,
+    "correctAnswer": "increasing",
+    "bookNumber": "30.8.V",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "defaultMode": "text",
+    "notes": "Rose r=2cos(2θ). On [π/4,π/2], r goes 0→-2. |r| goes 0→2, so distance increasing. Accept: increasing, inc."
+  },
+  {
+    "id": 4847,
+    "correctAnswer": "4",
+    "bookNumber": "30.8.VI",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "notes": "Rose r=2cos(2θ). Max distance |r|=2 when cos(2θ)=±1. θ=0,π/2,π,3π/2 in [0,2π). Count = 4. Accept: 4."
+  },
+  {
+    "id": 4848,
+    "correctAnswer": "5",
+    "bookNumber": "30.9.I",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "notes": "r=3+2sin(θ). Max r when sin(θ)=1: r=3+2=5. Accept: 5."
+  },
+  {
+    "id": 4849,
+    "correctAnswer": "1",
+    "bookNumber": "30.9.II",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "notes": "r=3+2sin(θ). Min r when sin(θ)=-1: r=3-2=1. Accept: 1."
+  },
+  {
+    "id": 4850,
+    "correctAnswer": "0",
+    "bookNumber": "30.9.III",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "notes": "r=3+2sin(θ). AROC over [0,π]: r(0)=3, r(π)=3. AROC=(3-3)/π=0. Accept: 0."
+  },
+  {
+    "id": 4851,
+    "correctAnswer": "-\\frac{4}{\\pi}",
+    "bookNumber": "30.10.I",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "notes": "Table: θ=0,π/2,π,3π/2,2π; r=2,0,-2,0,2. AROC [0,π] = (-2-2)/π = -4/π. Accept: -4/π, -4/pi."
+  },
+  {
+    "id": 4852,
+    "correctAnswer": "\\frac{4}{\\pi}",
+    "bookNumber": "30.10.II",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "notes": "Table: AROC [π,2π] = (2-(-2))/π = 4/π. Accept: 4/π, 4/pi."
+  },
+  {
+    "id": 4853,
+    "correctAnswer": "(2, 0)",
+    "bookNumber": "30.10.III",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "notes": "At θ=π, r=-2. Rectangular: x=-2cos(π)=2, y=-2sin(π)=0. Point is (2,0). Accept: (2,0), (2, 0)."
+  },
+  {
+    "id": 4854,
+    "correctAnswer": "0, \\pi, 2\\pi",
+    "bookNumber": "30.10.IV",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "notes": "Table: Farthest when |r|=2, occurs at θ=0, θ=π, θ=2π (in [0,2π])."
+  },
+  {
+    "id": 4855,
+    "correctAnswer": "2",
+    "bookNumber": "30.10.V",
+    "due_on": "2026-01-19",
+    "concept": 30,
+    "class": "P",
+    "notes": "Table: Max distance from origin = max|r| = 2. Accept: 2."
+  },
+  {
+    "id": 4856,
+    "correctAnswer": "7+0i",
+    "bookNumber": "31.1.I",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "Write 7 in form a+bi. Answer: 7+0i. Accept: 7+0i, 7+0*i.  Do not accept just 7"
+  },
+  {
+    "id": 4857,
+    "correctAnswer": "0-3i",
+    "bookNumber": "31.1.II",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "Write -3i in form a+bi. Answer: 0-3i. Accept: 0-3i, 0+(-3)i.  Do not accept just -3i."
+  },
+  {
+    "id": 4858,
+    "correctAnswer": "5i",
+    "bookNumber": "31.1.III",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "Write √(-25) in form a+bi. √(-25)=√25·√(-1)=5i. Accept: 0+5i.  Do not accept just 5i."
+  },
+  {
+    "id": 4859,
+    "correctAnswer": "2-3i",
+    "bookNumber": "31.1.IV",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "Write 2-√(-9) in form a+bi. 2-√9·i=2-3i. Accept: 2-3i."
+  },
+  {
+    "id": 4860,
+    "correctAnswer": "5",
+    "bookNumber": "31.2.I",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "Find |z| for z=3+4i. |z|=√(9+16)=√25=5. Accept: 5."
+  },
+  {
+    "id": 4861,
+    "correctAnswer": "13",
+    "bookNumber": "31.2.II",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "Find |z| for z=-5+12i. |z|=√(25+144)=√169=13. Accept: 13."
+  },
+  {
+    "id": 4862,
+    "correctAnswer": "2",
+    "bookNumber": "31.2.III",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "Find |z| for z=2i. |z|=√(0+4)=2. Accept: 2."
+  },
+  {
+    "id": 4863,
+    "correctAnswer": "7",
+    "bookNumber": "31.2.IV",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "Find |z| for z=-7. |z|=√(49+0)=7. Accept: 7."
+  },
+  {
+    "id": 4864,
+    "correctAnswer": "4-3i",
+    "bookNumber": "31.3.I",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "z=4+3i. Find conjugate z̄. z̄=4-3i. Accept: 4-3i."
+  },
+  {
+    "id": 4865,
+    "correctAnswer": "25",
+    "bookNumber": "31.3.II",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "z=4+3i. Find z·z̄. z·z̄=(4+3i)(4-3i)=16+9=25. Accept: 25."
+  },
+  {
+    "id": 4866,
+    "correctAnswer": "-2+5i",
+    "bookNumber": "31.3.III",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "z=-2-5i. Find conjugate z̄. z̄=-2+5i. Accept: -2+5i."
+  },
+  {
+    "id": 4867,
+    "correctAnswer": "29",
+    "bookNumber": "31.3.IV",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "z=-2-5i. Find z·z̄. z·z̄=(-2)²+(-5)²=4+25=29. Accept: 29."
+  },
+  {
+    "id": 4868,
+    "correctAnswer": "\\sqrt{2}(\\cos(\\frac{\\pi}{4})+i\\sin(\\frac{\\pi}{4}))",
+    "bookNumber": "31.4.I",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "z=1+i to polar. r=√2, θ=π/4. Accept: √2(cos(π/4)+isin(π/4)), √2 cis(π/4), √2e^(iπ/4)."
+  },
+  {
+    "id": 4869,
+    "correctAnswer": "2(\\cos(\\frac{5\\pi}{6})+i\\sin(\\frac{5\\pi}{6}))",
+    "bookNumber": "31.4.II",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "z=-√3+i to polar. r=2, θ=5π/6 (Quadrant II). Accept: 2(cos(5π/6)+isin(5π/6)), 2cis(5π/6)."
+  },
+  {
+    "id": 4870,
+    "correctAnswer": "2\\sqrt{2}(\\cos(\\frac{5\\pi}{4})+i\\sin(\\frac{5\\pi}{4}))",
+    "bookNumber": "31.4.III",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "z=-2-2i to polar. r=2√2, θ=5π/4 (Quadrant III). Accept: 2√2(cos(5π/4)+isin(5π/4)), also accept -3π/4 for angle."
+  },
+  {
+    "id": 4871,
+    "correctAnswer": "3(\\cos(0)+i\\sin(0))",
+    "bookNumber": "31.4.IV",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "z=3 to polar. r=3, θ=0. Accept: 3(cos(0)+isin(0)), 3cis(0), 3."
+  },
+  {
+    "id": 4872,
+    "correctAnswer": "4(\\cos(\\frac{3\\pi}{2})+i\\sin(\\frac{3\\pi}{2}))",
+    "bookNumber": "31.4.V",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "z=-4i to polar. r=4, θ=3π/2 (or -π/2). Accept: 4(cos(3π/2)+isin(3π/2)), 4cis(3π/2), 4cis(-π/2)."
+  },
+  {
+    "id": 4873,
+    "correctAnswer": "2+2\\sqrt{3}i",
+    "bookNumber": "31.5.I",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "4(cos(π/3)+isin(π/3)) to rectangular. a=4(1/2)=2, b=4(√3/2)=2√3. Accept: 2+2√3i, 2+2sqrt(3)i."
+  },
+  {
+    "id": 4874,
+    "correctAnswer": "-\\sqrt{2}-\\sqrt{2}i",
+    "bookNumber": "31.5.II",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "2(cos(5π/4)+isin(5π/4)) to rectangular. a=2(-√2/2)=-√2, b=-√2. Accept: -√2-√2i, -sqrt(2)-sqrt(2)i."
+  },
+  {
+    "id": 4875,
+    "correctAnswer": "-5i",
+    "bookNumber": "31.5.III",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "5(cos(3π/2)+isin(3π/2)) to rectangular. a=0, b=-5. Accept: -5i, 0-5i."
+  },
+  {
+    "id": 4876,
+    "correctAnswer": "-3",
+    "bookNumber": "31.5.IV",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "3(cos(π)+isin(π)) to rectangular. a=3(-1)=-3, b=0. Accept: -3, -3+0i."
+  },
+  {
+    "id": 4877,
+    "correctAnswer": "6(\\cos(\\frac{\\pi}{2})+i\\sin(\\frac{\\pi}{2}))",
+    "bookNumber": "31.6.I",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "z₁=2(cos(π/6)+isin(π/6)), z₂=3(cos(π/3)+isin(π/3)). Multiply: r=6, θ=π/2. Accept: 6(cos(π/2)+isin(π/2)), 6i."
+  },
+  {
+    "id": 4878,
+    "correctAnswer": "8(\\cos(\\frac{3\\pi}{2})+i\\sin(\\frac{3\\pi}{2}))",
+    "bookNumber": "31.6.II",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "z₁=4(cos(2π/3)+isin(2π/3)), z₂=2(cos(5π/6)+isin(5π/6)). r=8, θ=2π/3+5π/6=3π/2. Accept: 8(cos(3π/2)+isin(3π/2)), -8i."
+  },
+  {
+    "id": 4879,
+    "correctAnswer": "\\cos(\\pi)+i\\sin(\\pi)",
+    "bookNumber": "31.6.III",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "z₁=cos(π/4)+isin(π/4), z₂=cos(3π/4)+isin(3π/4). r=1, θ=π. Accept: cos(π)+isin(π), -1, -1+0i."
+  },
+  {
+    "id": 4880,
+    "correctAnswer": "i",
+    "bookNumber": "31.7.I",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "Simplify i^17. 17=4(4)+1, so i^17=i^1=i. Accept: i."
+  },
+  {
+    "id": 4881,
+    "correctAnswer": "-1",
+    "bookNumber": "31.7.II",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "Simplify i^42. 42=4(10)+2, so i^42=i^2=-1. Accept: -1."
+  },
+  {
+    "id": 4882,
+    "correctAnswer": "1",
+    "bookNumber": "31.7.III",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "Simplify i^100. 100=4(25)+0, so i^100=i^0=1. Accept: 1."
+  },
+  {
+    "id": 4883,
+    "correctAnswer": "2(\\cos(\\frac{3\\pi}{4})+i\\sin(\\frac{3\\pi}{4}))",
+    "bookNumber": "31.8.I",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "z=2(cos(π/4)+isin(π/4)). Find i·z in polar. i rotates by π/2, so θ=π/4+π/2=3π/4. Accept: 2(cos(3π/4)+isin(3π/4)), 2cis(3π/4)."
+  },
+  {
+    "id": 4884,
+    "correctAnswer": "-\\sqrt{2}+\\sqrt{2}i",
+    "bookNumber": "31.8.II",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "z=2(cos(π/4)+isin(π/4))=√2+√2i. i·z=i(√2+√2i)=√2i-√2=-√2+√2i. Accept: -√2+√2i, -sqrt(2)+sqrt(2)i."
+  },
+  {
+    "id": 4885,
+    "correctAnswer": "2(\\cos(-\\frac{\\pi}{4})+i\\sin(-\\frac{\\pi}{4}))",
+    "bookNumber": "31.8.III",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "z=2(cos(π/4)+isin(π/4)). Conjugate z̄ has same magnitude, negative angle. Accept: 2(cos(-π/4)+isin(-π/4)), 2cis(-π/4), 2cis(7π/4)."
+  },
+  {
+    "id": 4886,
+    "correctAnswer": "True",
+    "bookNumber": "31.9.I",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "defaultMode": "text",
+    "notes": "T/F: Every real number is a complex number. TRUE (a = a+0i). Accept: True, T, true."
+  },
+  {
+    "id": 4887,
+    "correctAnswer": "False",
+    "bookNumber": "31.9.II",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "defaultMode": "text",
+    "notes": "T/F: Every complex number is a real number. FALSE (e.g., i is not real). Accept: False, F, false."
+  },
+  {
+    "id": 4888,
+    "correctAnswer": "True",
+    "bookNumber": "31.9.III",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "defaultMode": "text",
+    "notes": "T/F: z·z̄ is always real. TRUE (z·z̄=|z|²). Accept: True, T, true."
+  },
+  {
+    "id": 4890,
+    "correctAnswer": "6",
+    "bookNumber": "31.10.I",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "z has |z|=3, arg(z)=π/3. w has |w|=2, arg(w)=5π/6. |z·w|=3×2=6. Accept: 6."
+  },
+  {
+    "id": 4891,
+    "correctAnswer": "\\frac{7\\pi}{6}",
+    "bookNumber": "31.10.II",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "notes": "Angle of z·w = π/3+5π/6 = 2π/6+5π/6 = 7π/6. Accept: 7π/6, 7pi/6."
+  },
+  {
+    "id": 4892,
+    "correctAnswer": "III",
+    "bookNumber": "31.10.III",
+    "due_on": "2026-01-19",
+    "concept": 31,
+    "class": "P",
+    "defaultMode": "text",
+    "notes": "z·w has angle 7π/6, which is in Quadrant III (between π and 3π/2). Accept: III, 3, Quadrant III, third."
+  },
+  {
+    "id": 3734,
+    "correctAnswer": "True",
+    "bookNumber": "32.1.I",
+    "due_on": "2026-01-19",
+    "concept": 32,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "T/F: A 99% CI is wider than a 95% CI (same data). TRUE (higher confidence = wider interval). Accept: True, T, true."
+  },
+  {
+    "id": 3735,
+    "correctAnswer": "False",
+    "bookNumber": "32.1.II",
+    "due_on": "2026-01-19",
+    "concept": 32,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "T/F: Increasing sample size makes CI wider. FALSE (larger n = smaller SE = narrower CI). Accept: False, F, false."
+  },
+  {
+    "id": 3736,
+    "correctAnswer": "False",
+    "bookNumber": "32.1.III",
+    "due_on": "2026-01-19",
+    "concept": 32,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "T/F: t-interval requires population be exactly normally distributed. FALSE (only approximately normal needed; CLT handles large n). Accept: False, F, false."
+  },
+  {
+    "id": 3737,
+    "correctAnswer": "True",
+    "bookNumber": "32.1.IV",
+    "due_on": "2026-01-19",
+    "concept": 32,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "T/F: For large samples (n≥30), t-interval valid even if skewed. TRUE (CLT applies). Accept: True, T, true."
+  },
+  {
+    "id": 3738,
+    "correctAnswer": "True",
+    "bookNumber": "32.1.V",
+    "due_on": "2026-01-19",
+    "concept": 32,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "T/F: t* depends on both confidence level and sample size. TRUE (df = n-1). Accept: True, T, true."
+  },
+  {
+    "id": 3739,
+    "correctAnswer": "4.2",
+    "bookNumber": "32.2.I",
+    "due_on": "2026-01-19",
+    "concept": 32,
+    "class": "S",
+    "notes": "Coffee shop: n=40, x̄=4.2 min, s=1.5 min. Point estimate for true mean wait time = x̄ = 4.2. Accept: 4.2."
+  },
+  {
+    "id": 3740,
+    "correctAnswer": "0.237",
+    "bookNumber": "32.2.II",
+    "due_on": "2026-01-19",
+    "concept": 32,
+    "class": "S",
+    "notes": "Coffee shop: n=40, s=1.5. SE = s/√n = 1.5/√40 ≈ 0.2372. Accept: 0.237, 0.2372, 0.24, 1.5/sqrt(40)."
+  },
+  {
+    "id": 3741,
+    "correctAnswer": "2.023",
+    "bookNumber": "32.2.III",
+    "due_on": "2026-01-19",
+    "concept": 32,
+    "class": "S",
+    "notes": "Coffee shop: df=39, 95% CI. t* ≈ 2.023 (from t-table or calculator). Accept: 2.023, 2.02, 2.022, 2.0227."
+  },
+  {
+    "id": 3742,
+    "correctAnswer": "0.48",
+    "bookNumber": "32.2.IV",
+    "due_on": "2026-01-19",
+    "concept": 32,
+    "class": "S",
+    "notes": "Coffee shop: ME = t* × SE = 2.023 × 0.237 ≈ 0.48. Accept: 0.48, 0.479, 0.4795, 0.47."
+  },
+  {
+    "id": 3743,
+    "correctAnswer": "(3.72, 4.68)",
+    "bookNumber": "32.2.V",
+    "due_on": "2026-01-19",
+    "concept": 32,
+    "class": "S",
+    "notes": "Coffee shop: 95% CI = 4.2 ± 0.48 = (3.72, 4.68). Accept: (3.72, 4.68), (3.72,4.68), 3.72 to 4.68."
+  },
+  {
+    "id": 3744,
+    "correctAnswer": "24",
+    "bookNumber": "32.3.I",
+    "due_on": "2026-01-19",
+    "concept": 32,
+    "class": "S",
+    "notes": "Packages: n=25, x̄=4.2 lbs, s=1.8 lbs. df = n-1 = 24. Accept: 24."
+  },
+  {
+    "id": 3745,
+    "correctAnswer": "(3.58, 4.82)",
+    "bookNumber": "32.3.II",
+    "due_on": "2026-01-19",
+    "concept": 32,
+    "class": "S",
+    "notes": "Packages: 90% CI, df=24, t*≈1.711, SE=0.36, ME≈0.616. CI = 4.2±0.616 ≈ (3.58, 4.82). Accept: (3.58, 4.82), (3.584, 4.816)."
+  },
+  {
+    "id": 3746,
+    "correctAnswer": "against",
+    "bookNumber": "32.3.III",
+    "due_on": "2026-01-19",
+    "concept": 32,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "Company claims mean=5.0 lbs. Since 5.0 is outside the interval (3.58, 4.82), the interval provides evidence AGAINST the claim. Accept: against, against the claim, evidence against."
+  },
+  {
+    "id": 3747,
+    "correctAnswer": "75.6",
+    "bookNumber": "32.4.I",
+    "due_on": "2026-01-19",
+    "concept": 32,
+    "class": "S",
+    "notes": "95% CI is (72.3, 78.9). x̄ = midpoint = (72.3+78.9)/2 = 75.6. Accept: 75.6."
+  },
+  {
+    "id": 3748,
+    "correctAnswer": "3.3",
+    "bookNumber": "32.4.II",
+    "due_on": "2026-01-19",
+    "concept": 32,
+    "class": "S",
+    "notes": "95% CI is (72.3, 78.9). ME = half-width = (78.9-72.3)/2 = 3.3. Accept: 3.3."
+  },
+  {
+    "id": 3749,
+    "correctAnswer": "against",
+    "bookNumber": "32.4.III",
+    "due_on": "2026-01-19",
+    "concept": 32,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "CI is (72.3, 78.9). Researcher claims μ=70. Since 70<72.3 (outside interval), evidence AGAINST the claim. Accept: against, against the claim, evidence against."
+  },
+  {
+    "id": 3750,
+    "correctAnswer": "consistent",
+    "bookNumber": "32.4.IV",
+    "due_on": "2026-01-19",
+    "concept": 32,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "CI is (72.3, 78.9). Claim: μ≥75. Since 75 is within the interval, the claim is CONSISTENT with the interval. Accept: consistent, consistent with, neither."
+  },
+  {
+    "id": 3751,
+    "correctAnswer": "true mean difference in test scores (Method A - Method B)",
+    "bookNumber": "32.5.I",
+    "due_on": "2026-01-19",
+    "concept": 32,
+    "class": "S",
+    "defaultMode": "text",
+    "freeResponse": true,
+    "notes": "Matched pairs: n=30 students, d̄=3.2, s_d=8.5. Parameter of interest is μ_d = true mean difference in test scores (A-B)."
+  },
+  {
+    "id": 3752,
+    "correctAnswer": "1.55",
+    "bookNumber": "32.5.II",
+    "due_on": "2026-01-19",
+    "concept": 32,
+    "class": "S",
+    "notes": "Matched pairs: s_d=8.5, n=30. SE = s_d/√n = 8.5/√30 ≈ 1.55. Accept: 1.55, 1.552, 1.5520."
+  },
+  {
+    "id": 3753,
+    "correctAnswer": "(0.03, 6.37)",
+    "bookNumber": "32.5.III",
+    "due_on": "2026-01-19",
+    "concept": 32,
+    "class": "S",
+    "notes": "Matched pairs: d̄=3.2, SE≈1.55, df=29, t*≈2.045. ME≈3.17. CI = 3.2±3.17 = (0.03, 6.37). Accept: (0.03, 6.37), (0.02, 6.38), (-0.0, 6.4)."
+  },
+  {
+    "id": 3754,
+    "correctAnswer": "consistent",
+    "bookNumber": "32.5.IV",
+    "due_on": "2026-01-19",
+    "concept": 32,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "CI is (0.03, 6.37). Claim: A is better by at least 5 points (μ_d≥5). Since 5 is within the interval, the claim is CONSISTENT. Accept: consistent, consistent with, neither."
+  },
+  {
+    "id": 3755,
+    "correctAnswer": "Yes",
+    "bookNumber": "32.6.I",
+    "due_on": "2026-01-19",
+    "concept": 32,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "Normal/Large Sample condition: n=50, moderate right skew. YES - n≥30 so CLT applies. Accept: Yes, yes, Y, satisfied, met."
+  },
+  {
+    "id": 3756,
+    "correctAnswer": "Yes",
+    "bookNumber": "32.6.II",
+    "due_on": "2026-01-19",
+    "concept": 32,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "Normal/Large Sample condition: n=15, roughly symmetric, no outliers. YES - n<30 but data shows no skew/outliers. Accept: Yes, yes, Y, satisfied, met."
+  },
+  {
+    "id": 3757,
+    "correctAnswer": "No",
+    "bookNumber": "32.6.III",
+    "due_on": "2026-01-19",
+    "concept": 32,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "Normal/Large Sample condition: n=20, two extreme outliers. NO - n<30 and outliers present. Accept: No, no, N, not satisfied, not met."
+  },
+  {
+    "id": 3758,
+    "correctAnswer": "Yes",
+    "bookNumber": "32.6.IV",
+    "due_on": "2026-01-19",
+    "concept": 32,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "Normal/Large Sample condition: n=100, strong left skew. YES - n≥30 so CLT applies regardless of skew. Accept: Yes, yes, Y, satisfied, met."
+  },
+  {
+    "id": 3759,
+    "correctAnswer": "(-14.26, -2.74)",
+    "bookNumber": "32.7.I",
+    "due_on": "2026-01-19",
+    "concept": 32,
+    "class": "S",
+    "notes": "Coffee roaster: n=20, d̄=-8.5, s_d=12.3. SE≈2.75, df=19, t*≈2.093, ME≈5.76. 95% CI = -8.5±5.76 = (-14.26, -2.74). Accept: (-14.26, -2.74), (-14.3, -2.7)."
+  },
+  {
+    "id": 3760,
+    "correctAnswer": "against",
+    "bookNumber": "32.7.II",
+    "due_on": "2026-01-19",
+    "concept": 32,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "CI is (-14.26, -2.74). Claim: reduces caffeine by >15 mg (μ_d<-15). Since -15<-14.26 (outside interval), evidence AGAINST. Accept: against, against the claim, evidence against."
+  },
+  {
+    "id": 3761,
+    "correctAnswer": "against",
+    "bookNumber": "32.7.III",
+    "due_on": "2026-01-19",
+    "concept": 32,
+    "class": "S",
+    "defaultMode": "text",
+    "notes": "CI is (-14.26, -2.74). Claim: no effect (μ_d=0). Since 0>-2.74 (outside interval), evidence AGAINST. Accept: against, against the claim, evidence against."
   }
 ]
